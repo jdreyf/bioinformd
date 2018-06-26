@@ -18,4 +18,4 @@ devtools::install_github("jdreyf/bioinformd")
 Usage
 -----
 
-See the vignette for a tutorial.
+A tutorial will be made as a vignette.

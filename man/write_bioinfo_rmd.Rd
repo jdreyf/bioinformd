@@ -4,7 +4,9 @@
 \alias{write_bioinfo_rmd}
 \title{Write Bioinfo RMD}
 \usage{
-write_bioinfo_rmd(filename, title, path = NULL)
+write_bioinfo_rmd(filename, title, path = NULL,
+  data.type = "Gene expression", input.files, data.logged = TRUE,
+  data.nas = TRUE)
 }
 \arguments{
 \item{filename}{Filename of RMD.}
@@ -12,7 +14,15 @@ write_bioinfo_rmd(filename, title, path = NULL)
 \item{title}{Title of RMD.}
 
 \item{path}{Path of RMD.}
+
+\item{data.type}{Description of expression and phenotype data.}
+
+\item{input.files}{Character vector of input files.}
+
+\item{data.logged}{Logical indicating if data has been log2-transformed.}
+
+\item{data.nas}{Logical indicating if data has NAs.}
 }
 \description{
-Write Bioinformatics RMD workflow
+Write Bioinformatics RMD workflow.
 }

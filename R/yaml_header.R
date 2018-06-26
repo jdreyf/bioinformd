@@ -5,9 +5,8 @@
 #' @export
 
 #need double quotes on outside, single on inside
-write_yaml_header <- function(title){
-  writeLines("---")
+yaml_header <- function(title){
   yaml <- c(paste0("title: '", title, "'"), paste("date: '`r Sys.time()`'"), "output: word_document")
-  writeLines(yaml)
-  writeLines(c("---","")) #add extra newline
+  yh <- c("---", yaml, "---")
+  return(yh)
 }
