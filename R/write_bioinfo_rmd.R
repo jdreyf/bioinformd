@@ -3,7 +3,7 @@
 #' Write Bioinformatics RMD workflow.
 #'
 #' @param filename Filename of RMD.
-#' @param title Title of RMD.
+#' @param yaml.title Title of RMD.
 #' @param path Path of RMD.
 #' @param data.type Description of expression and phenotype data.
 #' @param input.files Character vector of input files.
@@ -11,9 +11,9 @@
 #' @param data.nas Logical indicating if data has NAs.
 #' @export
 
-write_bioinfo_rmd <- function(filename, title, path=NULL, data.type="Gene expression", input.files, data.logged=TRUE,
+write_bioinfo_rmd <- function(filename, yaml.title, path=NULL, data.type="Gene expression", input.files, data.logged=TRUE,
                               data.nas=TRUE){
-  yh <- yaml_header(title=title)
+  yh <- yaml_header(yaml.title=yaml.title)
   sc <- setup_chunk(path=path)
   dt <- data_txt(data.type=data.type, input.files = input.files)
   rd <- read_chunk(input.files=input.files, data.logged=data.logged)
@@ -23,6 +23,9 @@ write_bioinfo_rmd <- function(filename, title, path=NULL, data.type="Gene expres
     imp <- impute_chunk(input.files=input.files)
     blocks[[length(blocks)+1]] <- imp
   }
+
+  nrm <- norm_chunk(input.files=input.files)
+  blocks[[length(blocks)+1]] <- nrm
 
   write_blocks(filename=filename, blocks = blocks)
 }

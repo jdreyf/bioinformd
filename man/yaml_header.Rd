@@ -4,10 +4,10 @@
 \alias{yaml_header}
 \title{Write YAML header}
 \usage{
-yaml_header(title)
+yaml_header(yaml.title)
 }
 \arguments{
-\item{title}{Title of project}
+\item{yaml.title}{Title of project}
 }
 \description{
 Write YAML header for project.

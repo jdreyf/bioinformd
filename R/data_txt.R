@@ -7,7 +7,6 @@
 #' @export
 
 data_txt <- function(data.type="Gene expression", input.files=NULL){
-  dt <- c("## Data", paste0(data.type, "."))
-  rl <- rmd_links(input.files)
-  return(c(dt, rl))
+  dt <- c("## Data", paste(data.type, "from", paste(rmd_links(input.files), collapse = " and ")))
+  return(dt)
 }

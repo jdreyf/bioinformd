@@ -4,14 +4,14 @@
 \alias{write_bioinfo_rmd}
 \title{Write Bioinfo RMD}
 \usage{
-write_bioinfo_rmd(filename, title, path = NULL,
+write_bioinfo_rmd(filename, yaml.title, path = NULL,
   data.type = "Gene expression", input.files, data.logged = TRUE,
   data.nas = TRUE)
 }
 \arguments{
 \item{filename}{Filename of RMD.}
 
-\item{title}{Title of RMD.}
+\item{yaml.title}{Title of RMD.}
 
 \item{path}{Path of RMD.}
 

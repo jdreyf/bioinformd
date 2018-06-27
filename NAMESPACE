@@ -2,6 +2,7 @@
 
 export(data_txt)
 export(impute_chunk)
+export(norm_chunk)
 export(read_chunk)
 export(rmd_links)
 export(setup_chunk)
