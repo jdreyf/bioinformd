@@ -6,7 +6,8 @@
 \usage{
 write_bioinfo_rmd(filename, yaml.title, path = NULL,
   data.type = "Gene expression", input.files, data.logged = TRUE,
-  data.nas = TRUE)
+  data.nas = TRUE, min.npergrp = 3, grp.var = "grp",
+  aw.model = paste0("~0+", grp.var), covars = NULL)
 }
 \arguments{
 \item{filename}{Filename of RMD.}
@@ -22,6 +23,14 @@ write_bioinfo_rmd(filename, yaml.title, path = NULL,
 \item{data.logged}{Logical indicating if data has been log2-transformed.}
 
 \item{data.nas}{Logical indicating if data has NAs.}
+
+\item{min.npergrp}{Minimum sample size per group.}
+
+\item{grp.var}{Variable name in \code{pheno} for group.}
+
+\item{aw.model}{Model formula for \code{arrayWeights}.}
+
+\item{covars}{Variable name in \code{pheno} for covariates.}
 }
 \description{
 Write Bioinformatics RMD workflow.

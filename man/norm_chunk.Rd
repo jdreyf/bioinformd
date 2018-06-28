@@ -7,7 +7,7 @@
 norm_chunk(input.files)
 }
 \arguments{
-\item{method}{Character string with method.}
+\item{input.files}{Character vector of input files. Should be data.matrix, pheno, then optionally annot.}
 }
 \description{
 Normalization chunk.
