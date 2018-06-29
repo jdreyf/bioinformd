@@ -15,17 +15,23 @@
 #' @param aw.model Model formula for \code{arrayWeights}.
 #' @export
 
-write_bioinfo_rmd <- function(filename, yaml.title, path=NULL, data.type="Gene expression", input.files, data.logged=TRUE,
-                              data.nas=TRUE, min.npergrp=3, grp.var="grp", aw.model=paste0("~0+", grp.var), covars=NULL){
+write_bioinfo_rmd <- function(filename, yaml.title, local.path=NULL, data.type="Gene expression",
+                              input.files, data.logged=TRUE, data.nas=TRUE, min.npergrp=3, grp.var="grp",
+                              aw.model=paste0("~0+", grp.var), covars=NULL){
   yh <- yaml_header(yaml.title=yaml.title)
-  sc <- setup_chunk(path=path)
-  dt <- data_txt(data.type=data.type, input.files = input.files)
+
+  if (is.null(local.path)) local.path <- getwd()
+  net.path <- sub("B:/|/n/bioinformatics/", "//jdcfs1/cores/bioinformatics/", local.path)
+  local.path <- sub("B:/|/n/bioinformatics/", "", local.path)
+
+  sc <- setup_chunk(path=local.path)
+  dt <- data_txt(data.type=data.type, input.files = input.files, path=net.path)
   rd <- read_chunk(input.files=input.files, data.logged=data.logged)
   blocks <- list(yaml=yh, setup=sc, data=dt, read=rd)
   if (data.nas){
-    blocks[["impute"]] <- impute_chunk(input.files=input.files)
+    blocks[["impute"]] <- impute_chunk(input.files=input.files, path=net.path)
   }
-  blocks[["norm"]] <- norm_chunk(input.files=input.files)
+  blocks[["norm"]] <- norm_chunk(input.files=input.files, path=net.path)
   if (data.nas){
     blocks[["feat_filt"]] <- feat_filt_chunk(min.npergrp=min.npergrp)
   }

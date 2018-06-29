@@ -4,7 +4,7 @@
 \alias{norm_chunk}
 \title{Normalization chunk}
 \usage{
-norm_chunk(input.files)
+norm_chunk(input.files, path)
 }
 \arguments{
 \item{input.files}{Character vector of input files. Should be data.matrix, pheno, then optionally annot.}

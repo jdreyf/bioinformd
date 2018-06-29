@@ -11,10 +11,10 @@ feat_filt_chunk <- function(min.npergrp){
               "feat.ss <- which(rowSums(!is.na(mtrx.na)) >= 0.8*min.npergrp)",
               "mtrx <- mtrx[feat.ss,,drop=FALSE]")
 
-  ffilt.txt <- c("## Filter rows", paste("Before filtering, there are `r nrow(mtrx.na)` rows.",
+  ffilt.txt <- paste("Before filtering, there are `r nrow(mtrx.na)` rows.",
     "We filter out rows that don't have at least `r ceiling(0.8*min.npergrp)` non-NA values.",
-     "After filtering, there are `r length(feat.ss)` rows."))
+     "After filtering, there are `r length(feat.ss)` rows.")
 
-  chunk <- c("```{r feat_filt}", r_code, "```", ffilt.txt)
+  chunk <- c("## Filter rows", "```{r feat_filt}", r_code, "```", ffilt.txt)
   return(chunk)
 }

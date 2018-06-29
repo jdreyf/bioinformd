@@ -5,11 +5,11 @@
 #' @param input.files Character vector of input files. Should be data.matrix, pheno, then optionally annot.
 #' @export
 
-impute_chunk <- function(input.files){
+impute_chunk <- function(input.files, path){
   imputed.filename <- paste0(sub(pattern="\\....$", "", input.files[1]), "_imputed.csv")
 
   impute.txt <- c("## Impute missing values", paste("We impute using k-nearest neighbors (kNN) of each feature [@knn].",
-                  "The imputed matrix is at", rmd_links(imputed.filename)))
+                  "The imputed matrix is at", rmd_links(imputed.filename, path=path)))
 
   r_code <- c("mtrx.na <- mtrx",
               "mtrx <- impute::impute.knn(mtrx, rowmax=1)$data",

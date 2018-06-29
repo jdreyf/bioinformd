@@ -4,7 +4,7 @@
 \alias{impute_chunk}
 \title{Impute chunk}
 \usage{
-impute_chunk(input.files)
+impute_chunk(input.files, path)
 }
 \arguments{
 \item{input.files}{Character vector of input files. Should be data.matrix, pheno, then optionally annot.}

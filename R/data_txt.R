@@ -6,7 +6,7 @@
 #' @param input.files Character vector of input files.
 #' @export
 
-data_txt <- function(data.type="Gene expression", input.files=NULL){
-  dt <- c("## Data", paste(data.type, "from", paste(rmd_links(input.files), collapse = " and ")))
+data_txt <- function(data.type="Gene expression", input.files=NULL, path){
+  dt <- c("## Data", paste(data.type, "from", paste(rmd_links(input.files, path=path), collapse = " and ")))
   return(dt)
 }

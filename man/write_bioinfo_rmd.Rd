@@ -4,7 +4,7 @@
 \alias{write_bioinfo_rmd}
 \title{Write Bioinfo RMD}
 \usage{
-write_bioinfo_rmd(filename, yaml.title, path = NULL,
+write_bioinfo_rmd(filename, yaml.title, local.path = NULL,
   data.type = "Gene expression", input.files, data.logged = TRUE,
   data.nas = TRUE, min.npergrp = 3, grp.var = "grp",
   aw.model = paste0("~0+", grp.var), covars = NULL)
@@ -13,8 +13,6 @@ write_bioinfo_rmd(filename, yaml.title, path = NULL,
 \item{filename}{Filename of RMD.}
 
 \item{yaml.title}{Title of RMD.}
-
-\item{path}{Path of RMD.}
 
 \item{data.type}{Description of expression and phenotype data.}
 
@@ -31,6 +29,8 @@ write_bioinfo_rmd(filename, yaml.title, path = NULL,
 \item{aw.model}{Model formula for \code{arrayWeights}.}
 
 \item{covars}{Variable name in \code{pheno} for covariates.}
+
+\item{path}{Path of RMD.}
 }
 \description{
 Write Bioinformatics RMD workflow.

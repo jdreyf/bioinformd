@@ -4,7 +4,7 @@
 \alias{setup_chunk}
 \title{Write setup chunk}
 \usage{
-setup_chunk(path = NULL)
+setup_chunk(path)
 }
 \arguments{
 \item{path}{Path of working directory.}
