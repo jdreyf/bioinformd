@@ -6,18 +6,25 @@
 #' @param yaml.title Title of RMD.
 #' @param path Path of RMD.
 #' @param data.type Description of expression and phenotype data.
-#' @param input.files Character vector of input files.
+#' @param input.files Character vector of input files. Matrix, pheno, and (optionally) annot.
 #' @param data.logged Logical indicating if data has been log2-transformed.
 #' @param data.nas Logical indicating if data has NAs.
 #' @param min.npergrp Minimum sample size per group.
 #' @param grp.var Variable name in \code{pheno} for group.
 #' @param covars Variable name in \code{pheno} for covariates.
 #' @param aw.model Model formula for \code{arrayWeights}.
+#' @param use_aw Logical indicating if array weights should be used.
+#' @param use_trend Logical indicating if \code{limma trend} should be used.
+#' @param contr.v Text defining named vector of contrasts. If \code{NULL}, all pairwise contrasts are tested.
+#' @param limma.model Model formula for \code{limma}, if want a design matrix.
+#' @param row.type Character in filename for features.
+#' @details If need to remove a sample, rerun with new \code{input.files}.
 #' @export
 
-write_bioinfo_rmd <- function(filename, yaml.title, local.path=NULL, data.type="Gene expression",
+bioinfo_rmd_contrasts <- function(filename, yaml.title, local.path=NULL, data.type="Gene expression",
                               input.files, data.logged=TRUE, data.nas=TRUE, min.npergrp=3, grp.var="grp",
-                              aw.model=paste0("~0+", grp.var), covars=NULL){
+                              covars=NULL, aw.model=paste0("~0+", grp.var), use_aw=TRUE, use_trend=FALSE,
+                              contr.v=NULL, limma.model=NULL, row.type="gene"){
   yh <- yaml_header(yaml.title=yaml.title)
 
   if (is.null(local.path)) local.path <- getwd()
@@ -38,6 +45,12 @@ write_bioinfo_rmd <- function(filename, yaml.title, local.path=NULL, data.type="
   blocks[["aw"]] <- sample_weights_chunk(aw.model=aw.model)
   blocks[["bp"]] <- boxplot_chunk()
   blocks[["pca"]] <- pca_chunk(grp.var=grp.var, covars=covars)
+  blocks[["mvt"]] <- meanvar_trend_chunk(voom.model=aw.model, use_trend=use_trend)
+
+  use_annot <- ifelse(length(input.files) >= 3, TRUE, FALSE)
+  blocks[["lc"]] <- limma_contrasts_chunk(grp.var=grp.var, contr.v=contr.v, path=net.path, limma.model=limma.model,
+                                          use_aw=use_aw, use_trend=use_trend, use_annot=use_annot, row.type=row.type)
+  blocks[["fp"]] <- feature_plots_chunk(grp.var=grp.var, path=net.path, use_annot=use_annot)
 
   blocks[["refs"]] <- "## References"
   write_blocks(filename=filename, blocks = blocks)
