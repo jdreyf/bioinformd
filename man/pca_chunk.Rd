@@ -4,10 +4,12 @@
 \alias{pca_chunk}
 \title{PCA chunk}
 \usage{
-pca_chunk(grp.var, covars = NULL)
+pca_chunk(grp.var, proj.nm, covars = NULL)
 }
 \arguments{
 \item{grp.var}{Variable name in \code{pheno} for group.}
+
+\item{proj.nm}{Name of project to paste into filenames.}
 
 \item{covars}{Variable name in \code{pheno} for covariates.}
 }

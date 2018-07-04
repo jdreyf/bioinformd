@@ -4,14 +4,21 @@
 \alias{feature_plots_chunk}
 \title{Feature plots chunk}
 \usage{
-feature_plots_chunk(grp.var = "grp", path, use_annot = TRUE)
+feature_plots_chunk(grp.var = "grp", path, proj.nm, contr.v,
+  use_annot = TRUE, row.type = "gene")
 }
 \arguments{
 \item{grp.var}{Variable name in \code{pheno} for group.}
 
 \item{path}{Path of RMD.}
 
+\item{proj.nm}{Name of project to paste into filenames.}
+
+\item{contr.v}{Text defining named vector of contrasts.}
+
 \item{use_annot}{Should \code{annot} be used.}
+
+\item{row.type}{Character in filename for plots.}
 }
 \description{
 Feature plots chunk.

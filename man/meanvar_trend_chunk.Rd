@@ -4,12 +4,14 @@
 \alias{meanvar_trend_chunk}
 \title{Meanvar trend chunk}
 \usage{
-meanvar_trend_chunk(voom.model, use_trend = FALSE)
+meanvar_trend_chunk(voom.model, use_trend = FALSE, row.type = "row")
 }
 \arguments{
 \item{voom.model}{Model formula for \code{arrayWeights}.}
 
 \item{use_trend}{Logical indicating if \code{limma trend} should be used.}
+
+\item{row.type}{Character in filename for features.}
 }
 \description{
 Meanvar trend chunk.

@@ -4,22 +4,39 @@
 #'
 #' @param grp.var Variable name in \code{pheno} for group.
 #' @param path Path of RMD.
+#' @param proj.nm Name of project to paste into filenames.
+#' @param contr.v Text defining named vector of contrasts.
 #' @param use_annot Should \code{annot} be used.
+#' @param row.type Character in filename for plots.
 #' @export
 
-feature_plots_chunk <- function(grp.var="grp", path, use_annot=TRUE){
-  fp.r <- c("signif_hist(mtt, name='signif_hist')",
-            "multi_volcano(mtt)",
+feature_plots_chunk <- function(grp.var="grp", path, proj.nm, contr.v, use_annot=TRUE, row.type="gene"){
+  fp.r <- c(paste0("signif_hist(mtt, name='", proj.nm, "_signif_hist')"),
+            paste0("multi_volcano(tab=mtt, name='", proj.nm,  "_volcanoes')"),
             "top.feats <- rownames(mtt)[1:min(200, nrow(mtt))]",
-            "ezheat(mtrx[top.feats[1:50],], pheno.df=pheno)",
-            paste0("plot_by_grp(mtrx[top.feats,], grp=pheno[,'", grp.var, "'])"))
+            paste0("ezheat(mtrx[top.feats[1:50],], pheno.df=pheno, name='", proj.nm, "_top", row.type, "s_heat')"),
+            paste0("plot_by_grp(mtrx[top.feats,], grp=pheno[,'", grp.var, "'], name='", proj.nm, "_top", row.type, "s')"))
 
-  fp.txt <- c("## Plot rows",
-              paste0("We plot the features from the analysis. The histograms of significance are at ",
-                     rmd_links(filenames = 'signif_hist.pdf', path = path), ". The volcanoes are at ",
-                     rmd_links(filenames = 'volcanoes.pdf', path = path), ", the heatmap is at ",
-                     rmd_links(filenames='topgenes_heat.pdf', path = path), ", and the dotplots are at ",
-                     rmd_links(filenames='top_genes_dotplots.pdf', path = path), "."))
+  rows.type <- paste0(row.type, "s")
+  fp.txt <- c(paste("## Plot", rows.type),
+              paste0("We plot the ", rows.type, " from the analysis. The histograms of significance are at ",
+                     rmd_links(filenames = paste0(proj.nm, '_signif_hist.pdf'), path = path), ". The volcanoes are at ",
+                     rmd_links(filenames = paste0(proj.nm, '_volcanoes.pdf'), path = path), ", the heatmap is at ",
+                     rmd_links(filenames=paste0(proj.nm, '_top', row.type, 's_heat.pdf'), path = path),
+                               ", and the dotplots are at ",
+                     rmd_links(filenames=paste0(proj.nm, '_top', row.type, 's_dotplots.pdf'), path = path), "."))
+
+  #if mult contrasts, use venn
+  if (grep(pattern = ",", x=contr.v)==1){
+    fp.r <- c(fp.r, paste0("sig.tab <- ezvenn(mtt, p.cutoff=0.05, name='", proj.nm, "_", row.type, "')"),
+              paste0("write.csv(sig.tab, '", proj.nm, "_", row.type, "_venn_tab.csv')"))
+    fp.txt <- c(fp.txt, "", paste0("The Venn diagram is at ", rmd_links(filenames = paste0(proj.nm, "_", row.type, "_venn.pdf"),
+                 path = path), ". The Venn table is at ", rmd_links(filenames=paste0(proj.nm, "_", row.type, '_venn_tab.csv'),
+                                                                    path = path),
+                 ". It has elements {-1, 0, 1}. For a ", row.type, " in a comparison, 0 indicates no significant change; ",
+                 "-1 indicates down; and 1 indicates up."))
+  }
+
   chunk <- c(fp.txt, "", "```{r fp}", fp.r, "```")
   return(chunk)
 }

@@ -8,6 +8,8 @@ norm_chunk(input.files, path)
 }
 \arguments{
 \item{input.files}{Character vector of input files. Should be data.matrix, pheno, then optionally annot.}
+
+\item{path}{Path of RMD.}
 }
 \description{
 Normalization chunk.

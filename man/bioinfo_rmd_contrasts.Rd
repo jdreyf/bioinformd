@@ -4,18 +4,16 @@
 \alias{bioinfo_rmd_contrasts}
 \title{Write Bioinfo RMD}
 \usage{
-bioinfo_rmd_contrasts(filename, yaml.title, local.path = NULL,
-  data.type = "Gene expression", input.files, data.logged = TRUE,
+bioinfo_rmd_contrasts(filename, local.path = NULL,
+  data.desc = "Gene expression", input.files, data.logged = TRUE,
   data.nas = TRUE, min.npergrp = 3, grp.var = "grp", covars = NULL,
   aw.model = paste0("~0+", grp.var), use_aw = TRUE, use_trend = FALSE,
-  contr.v = NULL, limma.model = NULL, row.type = "gene")
+  contr.v = NULL, limma.model = NULL, row.type = "gene", pdb.files)
 }
 \arguments{
 \item{filename}{Filename of RMD.}
 
-\item{yaml.title}{Title of RMD.}
-
-\item{data.type}{Description of expression and phenotype data.}
+\item{data.desc}{Description of data sources for \code{input.files}.}
 
 \item{input.files}{Character vector of input files. Matrix, pheno, and (optionally) annot.}
 
@@ -29,17 +27,17 @@ bioinfo_rmd_contrasts(filename, yaml.title, local.path = NULL,
 
 \item{covars}{Variable name in \code{pheno} for covariates.}
 
-\item{aw.model}{Model formula for \code{arrayWeights}.}
-
 \item{use_aw}{Logical indicating if array weights should be used.}
 
 \item{use_trend}{Logical indicating if \code{limma trend} should be used.}
 
-\item{contr.v}{Text defining named vector of contrasts. If \code{NULL}, all pairwise contrasts are tested.}
+\item{contr.v}{Text defining named vector of contrasts.}
 
 \item{limma.model}{Model formula for \code{limma}, if want a design matrix.}
 
 \item{row.type}{Character in filename for features.}
+
+\item{pdb.files}{Text defining pathway database files.}
 
 \item{path}{Path of RMD.}
 }

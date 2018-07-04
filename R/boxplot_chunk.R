@@ -1,6 +1,7 @@
 #' Boxplot chunk
 #'
 #' Boxplot chunk.
+#' @export
 
 boxplot_chunk <- function(){
   bp.txt <- c("## Visualize distributions",

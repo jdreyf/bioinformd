@@ -5,11 +5,12 @@
 #' @export
 
 sample_weights_chunk <- function(aw.model=NULL){
+  #arrayWeightsSimple yielded extreme values on random data, so using arrayWeights
   if (!is.null(aw.model)){
     sw.r <- c(paste0("aw.des <- model.matrix(", aw.model, ", data=pheno)"),
-                "aw <- arrayWeightsSimple(mtrx, design=aw.des)")
+                "aw <- arrayWeights(mtrx, design=aw.des)")
   } else {
-    sw.r <- "aw <- arrayWeightsSimple(mtrx)"
+    sw.r <- "aw <- arrayWeights(mtrx)"
   }
   sw.r <- c(sw.r, "names(aw) <- colnames(mtrx)")
 

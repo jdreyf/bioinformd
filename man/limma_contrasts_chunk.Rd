@@ -4,7 +4,7 @@
 \alias{limma_contrasts_chunk}
 \title{Limma contrasts chunk}
 \usage{
-limma_contrasts_chunk(grp.var, contr.v, path, limma.model = NULL,
+limma_contrasts_chunk(grp.var, contr.v, path, proj.nm, limma.model = NULL,
   use_aw = TRUE, use_trend = FALSE, use_annot = TRUE, row.type = "gene")
 }
 \arguments{
@@ -13,6 +13,8 @@ limma_contrasts_chunk(grp.var, contr.v, path, limma.model = NULL,
 \item{contr.v}{Text defining named vector of contrasts. If \code{NULL}, all pairwise contrasts are tested.}
 
 \item{path}{Path of RMD.}
+
+\item{proj.nm}{Name of project to paste into filenames.}
 
 \item{limma.model}{Model formula for \code{arrayWeights}.}
 

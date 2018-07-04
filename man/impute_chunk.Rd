@@ -4,10 +4,14 @@
 \alias{impute_chunk}
 \title{Impute chunk}
 \usage{
-impute_chunk(input.files, path)
+impute_chunk(input.files, path, row.type = "gene")
 }
 \arguments{
 \item{input.files}{Character vector of input files. Should be data.matrix, pheno, then optionally annot.}
+
+\item{path}{Path of RMD.}
+
+\item{row.type}{Character in filename for features.}
 }
 \description{
 Impute chunk.
