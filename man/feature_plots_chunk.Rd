@@ -14,11 +14,11 @@ feature_plots_chunk(grp.var = "grp", path, proj.nm, contr.v,
 
 \item{proj.nm}{Name of project to paste into filenames.}
 
-\item{contr.v}{Text defining named vector of contrasts.}
-
 \item{use_annot}{Should \code{annot} be used.}
 
 \item{row.type}{Character in filename for plots.}
+
+\item{contrv}{Named vector of contrasts.}
 }
 \description{
 Feature plots chunk.

@@ -8,7 +8,7 @@ bioinfo_rmd_contrasts(filename, local.path = NULL,
   data.desc = "Gene expression", input.files, data.logged = TRUE,
   data.nas = TRUE, min.npergrp = 3, grp.var = "grp", covars = NULL,
   aw.model = paste0("~0+", grp.var), use_aw = TRUE, use_trend = FALSE,
-  contr.v = NULL, limma.model = NULL, row.type = "gene", pdb.files)
+  contr.v, limma.model = NULL, row.type = "gene", pdb.files)
 }
 \arguments{
 \item{filename}{Filename of RMD.}
@@ -31,7 +31,7 @@ bioinfo_rmd_contrasts(filename, local.path = NULL,
 
 \item{use_trend}{Logical indicating if \code{limma trend} should be used.}
 
-\item{contr.v}{Text defining named vector of contrasts.}
+\item{contr.v}{Named vector of contrasts.}
 
 \item{limma.model}{Model formula for \code{limma}, if want a design matrix.}
 
@@ -46,4 +46,10 @@ Write Bioinformatics RMD workflow.
 }
 \details{
 If need to remove a sample, rerun with new \code{input.files}.
+}
+\examples{
+\donttest{
+bioinfo_rmd_contrasts(filename="new_analysis", input.files = c("counts.csv", "pheno.csv"),
+contr.v=c(treat="treat-control"))
+}
 }

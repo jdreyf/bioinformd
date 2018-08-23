@@ -13,17 +13,22 @@
 #' @param covars Variable name in \code{pheno} for covariates.
 #' @param use_aw Logical indicating if array weights should be used.
 #' @param use_trend Logical indicating if \code{limma trend} should be used.
-#' @param contr.v Text defining named vector of contrasts.
+#' @param contr.v Named vector of contrasts.
 #' @param limma.model Model formula for \code{limma}, if want a design matrix.
 #' @param row.type Character in filename for features.
 #' @param pdb.files Text defining pathway database files.
 #' @details If need to remove a sample, rerun with new \code{input.files}.
 #' @export
+#' @examples
+#' \donttest{
+#' bioinfo_rmd_contrasts(filename="new_analysis", input.files = c("counts.csv", "pheno.csv"),
+#' contr.v=c(treat="treat-control"))
+#' }
 
 bioinfo_rmd_contrasts <- function(filename, local.path=NULL, data.desc="Gene expression",
                               input.files, data.logged=TRUE, data.nas=TRUE, min.npergrp=3, grp.var="grp",
                               covars=NULL, aw.model=paste0("~0+", grp.var), use_aw=TRUE, use_trend=FALSE,
-                              contr.v=NULL, limma.model=NULL, row.type="gene", pdb.files){
+                              contr.v, limma.model=NULL, row.type="gene", pdb.files){
   proj.nm <- sub("analyze_", "", filename)
   yaml.title <- gsub("_", " ", proj.nm)
   yh <- yaml_header(yaml.title=yaml.title)
@@ -50,12 +55,15 @@ bioinfo_rmd_contrasts <- function(filename, local.path=NULL, data.desc="Gene exp
   blocks[["mvt"]] <- meanvar_trend_chunk(voom.model=aw.model, use_trend=use_trend)
 
   use_annot <- ifelse(length(input.files) >= 3, TRUE, FALSE)
-  blocks[["lc"]] <- limma_contrasts_chunk(grp.var=grp.var, contr.v=contr.v, path=net.path, proj.nm=proj.nm, limma.model=limma.model,
-                                          use_aw=use_aw, use_trend=use_trend, use_annot=use_annot, row.type=row.type)
+  blocks[["lc"]] <- limma_contrasts_chunk(grp.var=grp.var, contr.v=contr.v, path=net.path, proj.nm=proj.nm,
+                                          limma.model=limma.model, use_aw=use_aw, use_trend=use_trend,
+                                          use_annot=use_annot, row.type=row.type)
   blocks[["fp"]] <- feature_plots_chunk(grp.var=grp.var, path=net.path, proj.nm=proj.nm, contr.v=contr.v, use_annot=use_annot)
 
   blocks[["rc"]] <- roast_contrasts_chunk(grp.var=grp.var, path=net.path)
 
   blocks[["refs"]] <- "## References"
+
+  #i want text, but not yaml or code, to skip a line after each \n. Easiest to add "" to text.
   write_blocks(filename=filename, blocks = blocks)
 }

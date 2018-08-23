@@ -5,7 +5,7 @@
 #' @param grp.var Variable name in \code{pheno} for group.
 #' @param path Path of RMD.
 #' @param proj.nm Name of project to paste into filenames.
-#' @param contr.v Text defining named vector of contrasts.
+#' @param contrv Named vector of contrasts.
 #' @param use_annot Should \code{annot} be used.
 #' @param row.type Character in filename for plots.
 #' @export
@@ -34,7 +34,7 @@ feature_plots_chunk <- function(grp.var="grp", path, proj.nm, contr.v, use_annot
                    rmd_links(filenames=paste0(proj.nm, '_top', row.type, 's_dotplots.pdf'), path = path), "."))
 
   #if mult contrasts, use venn
-  if (grep(pattern = ",", x=contr.v)==1){
+  if (grepl(",", contr.v[1])){
     fp.r <- c(fp.r, paste0("sig.tab <- ezvenn(mtt, p.cutoff=0.05, name='", proj.nm, "_", row.type, "')"),
               paste0("write.csv(sig.tab, '", proj.nm, "_", row.type, "_venn_tab.csv')"))
     fp.txt <- c(fp.txt, "", paste0("The Venn diagram is at ", rmd_links(filenames = paste0(proj.nm, "_", row.type, "_venn.pdf"),

@@ -3,7 +3,7 @@
 #' Limma contrasts chunk.
 #'
 #' @param grp.var Variable name in \code{pheno} for group.
-#' @param contr.v Text defining named vector of contrasts. If \code{NULL}, all pairwise contrasts are tested.
+#' @param contr.v Named vector of contrasts.
 #' @param path Path of RMD.
 #' @param proj.nm Name of project to paste into filenames.
 #' @param limma.model Model formula for \code{arrayWeights}.

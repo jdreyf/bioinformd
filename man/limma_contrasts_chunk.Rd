@@ -10,7 +10,7 @@ limma_contrasts_chunk(grp.var, contr.v, path, proj.nm, limma.model = NULL,
 \arguments{
 \item{grp.var}{Variable name in \code{pheno} for group.}
 
-\item{contr.v}{Text defining named vector of contrasts. If \code{NULL}, all pairwise contrasts are tested.}
+\item{contr.v}{Named vector of contrasts.}
 
 \item{path}{Path of RMD.}
 
