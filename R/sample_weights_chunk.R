@@ -2,16 +2,27 @@
 #'
 #' Sample weights chunk.
 #' @param aw.model Model formula for \code{arrayWeights}.
+#' @param elst Logical indicating if expression object an EList.
 #' @export
 
-sample_weights_chunk <- function(aw.model=NULL){
+sample_weights_chunk <- function(aw.model=NULL, elst=FALSE){
   #arrayWeightsSimple yielded extreme values on random data, so using arrayWeights
-  if (!is.null(aw.model)){
-    sw.r <- c(paste0("aw.des <- model.matrix(", aw.model, ", data=pheno)"),
-                "aw <- arrayWeights(mtrx, design=aw.des)")
+  if (elst){
+    if (!is.null(aw.model)){
+      sw.r <- c(paste0("aw.des <- model.matrix(", aw.model, ", data=pheno)"),
+                "aw <- arrayWeights(elst$E, design=aw.des)")
+    } else {
+      sw.r <- "aw <- arrayWeights(elst$E)"
+    }
   } else {
-    sw.r <- "aw <- arrayWeights(mtrx)"
+    if (!is.null(aw.model)){
+      sw.r <- c(paste0("aw.des <- model.matrix(", aw.model, ", data=pheno)"),
+                "aw <- arrayWeights(mtrx, design=aw.des)")
+    } else {
+      sw.r <- "aw <- arrayWeights(mtrx)"
+    }
   }
+
   sw.r <- c(sw.r, "names(aw) <- colnames(mtrx)")
 
   sw.txt <- c("## Estimate sample quality weights",

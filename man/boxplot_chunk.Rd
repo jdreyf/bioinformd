@@ -4,7 +4,10 @@
 \alias{boxplot_chunk}
 \title{Boxplot chunk}
 \usage{
-boxplot_chunk()
+boxplot_chunk(elist = FALSE)
+}
+\arguments{
+\item{elst}{Logical indicating if expression object an EList.}
 }
 \description{
 Boxplot chunk.

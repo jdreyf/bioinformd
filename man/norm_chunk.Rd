@@ -4,12 +4,12 @@
 \alias{norm_chunk}
 \title{Normalization chunk}
 \usage{
-norm_chunk(input.files, path)
+norm_chunk(proj.nm, path)
 }
 \arguments{
-\item{input.files}{Character vector of input files. Should be data.matrix, pheno, then optionally annot.}
-
 \item{path}{Path of RMD.}
+
+\item{input.files}{Character vector of input files. Should be data.matrix, pheno, then optionally annot.}
 }
 \description{
 Normalization chunk.

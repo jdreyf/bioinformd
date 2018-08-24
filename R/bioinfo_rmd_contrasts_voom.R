@@ -25,7 +25,7 @@
 #' contr.v=c(treat="treat-control"))
 #' }
 
-bioinfo_rmd_contrasts <- function(filename, local.path=NULL, data.desc="Gene expression",
+bioinfo_rmd_contrasts_voom <- function(filename, local.path=NULL, data.desc="Gene expression",
                               input.files, data.logged=TRUE, data.nas=TRUE, min.npergrp=3, grp.var="grp",
                               covars=NULL, aw.model=paste0("~0+", grp.var), use_aw=TRUE, use_trend=FALSE,
                               contr.v, limma.model=NULL, row.type="gene", pdb.files){
@@ -41,26 +41,24 @@ bioinfo_rmd_contrasts <- function(filename, local.path=NULL, data.desc="Gene exp
   dt <- data_txt(input.files = input.files, path=net.path)
   rd <- read_chunk(input.files=input.files, data.logged=data.logged)
   blocks <- list(yaml=yh, setup=sc, data=dt, read=rd)
-  if (data.nas){
-    blocks[["impute"]] <- impute_chunk(input.files=input.files, path=net.path)
-  }
-  blocks[["norm"]] <- norm_chunk(proj.nm=proj.nm, path=net.path)
-  if (data.nas){
-    blocks[["feat_filt"]] <- feat_filt_chunk(min.npergrp=min.npergrp, row.type = row.type)
-  }
+
+  blocks[["feat_filt"]] <- feat_filt_voom_chunk(min.npergrp=min.npergrp, row.type = row.type)
+
+  blocks[["norm"]] <- norm_voom_chunk(proj.nm=proj.nm, voom.model=aw.model, path=net.path)
+
   aw.model <- paste0("~0+", grp.var)
-  blocks[["aw"]] <- sample_weights_chunk(aw.model=aw.model)
-  blocks[["bp"]] <- boxplot_chunk()
-  blocks[["pca"]] <- pca_chunk(grp.var=grp.var, proj.nm=proj.nm, covars=covars)
-  blocks[["mvt"]] <- meanvar_trend_chunk(voom.model=aw.model, use_trend=use_trend)
+  blocks[["aw"]] <- sample_weights_chunk(aw.model=aw.model, elst=TRUE)
+  blocks[["bp"]] <- boxplot_chunk(elist=TRUE)
+  blocks[["pca"]] <- pca_chunk(grp.var=grp.var, proj.nm=proj.nm, covars=covars, elst=TRUE)
 
   use_annot <- ifelse(length(input.files) >= 3, TRUE, FALSE)
   blocks[["lc"]] <- limma_contrasts_chunk(grp.var=grp.var, contr.v=contr.v, path=net.path, proj.nm=proj.nm,
                                           limma.model=limma.model, use_aw=use_aw, use_trend=use_trend,
-                                          use_annot=use_annot, row.type=row.type)
-  blocks[["fp"]] <- feature_plots_chunk(grp.var=grp.var, path=net.path, proj.nm=proj.nm, contr.v=contr.v, use_annot=use_annot)
+                                          use_annot=use_annot, row.type=row.type, elst=TRUE)
+  blocks[["fp"]] <- feature_plots_chunk(grp.var=grp.var, path=net.path, proj.nm=proj.nm, contr.v=contr.v,
+                                        use_annot=use_annot, elst=TRUE)
 
-  blocks[["rc"]] <- roast_contrasts_chunk(grp.var=grp.var, path=net.path)
+  blocks[["rc"]] <- roast_contrasts_chunk(grp.var=grp.var, path=net.path, elst=TRUE, use_aw=FALSE)
 
   blocks[["refs"]] <- "## References"
 

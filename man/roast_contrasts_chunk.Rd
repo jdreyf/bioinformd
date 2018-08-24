@@ -5,7 +5,7 @@
 \title{Roast contrasts chunk}
 \usage{
 roast_contrasts_chunk(grp.var, path, pdb.files = "c(cp = 'c2.cp.v6.0')",
-  use_des = FALSE, use_aw = TRUE, use_trend = FALSE)
+  use_des = FALSE, use_aw = TRUE, use_trend = FALSE, elst = FALSE)
 }
 \arguments{
 \item{grp.var}{Variable name in \code{pheno} for group.}
@@ -19,6 +19,8 @@ roast_contrasts_chunk(grp.var, path, pdb.files = "c(cp = 'c2.cp.v6.0')",
 \item{use_aw}{Logical indicating if array weights should be used.}
 
 \item{use_trend}{Logical indicating if \code{limma trend} should be used.}
+
+\item{elst}{Logical indicating if expression object an EList.}
 }
 \description{
 Roast contrasts chunk.

@@ -5,7 +5,8 @@
 \title{Limma contrasts chunk}
 \usage{
 limma_contrasts_chunk(grp.var, contr.v, path, proj.nm, limma.model = NULL,
-  use_aw = TRUE, use_trend = FALSE, use_annot = TRUE, row.type = "gene")
+  use_aw = TRUE, use_trend = FALSE, use_annot = TRUE, row.type = "gene",
+  elst = FALSE)
 }
 \arguments{
 \item{grp.var}{Variable name in \code{pheno} for group.}
@@ -25,6 +26,8 @@ limma_contrasts_chunk(grp.var, contr.v, path, proj.nm, limma.model = NULL,
 \item{use_annot}{Should \code{annot} be used.}
 
 \item{row.type}{Character in filename for features.}
+
+\item{elst}{Logical indicating if expression object an EList.}
 }
 \description{
 Limma contrasts chunk.

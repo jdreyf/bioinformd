@@ -5,7 +5,7 @@
 \title{Feature plots chunk}
 \usage{
 feature_plots_chunk(grp.var = "grp", path, proj.nm, contr.v,
-  use_annot = TRUE, row.type = "gene")
+  use_annot = TRUE, row.type = "gene", elst = FALSE)
 }
 \arguments{
 \item{grp.var}{Variable name in \code{pheno} for group.}
@@ -17,6 +17,8 @@ feature_plots_chunk(grp.var = "grp", path, proj.nm, contr.v,
 \item{use_annot}{Should \code{annot} be used.}
 
 \item{row.type}{Character in filename for plots.}
+
+\item{elst}{Logical indicating if expression object an EList.}
 
 \item{contrv}{Named vector of contrasts.}
 }

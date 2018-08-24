@@ -11,14 +11,21 @@
 #' @param use_trend Logical indicating if \code{limma trend} should be used.
 #' @param use_annot Should \code{annot} be used.
 #' @param row.type Character in filename for features.
+#' @param elst Logical indicating if expression object an EList.
 #' @export
 
 limma_contrasts_chunk <- function(grp.var, contr.v, path, proj.nm, limma.model=NULL, use_aw=TRUE, use_trend=FALSE,
-                                  use_annot=TRUE, row.type="gene"){
+                                  use_annot=TRUE, row.type="gene", elst=FALSE){
   if (!is.null(limma.model)) paste0("des <- model.matrix(", limma.model, ")")
 
-  lc.r <- c(paste0("contr.v <- ", contr.v),
-            paste0("mtt <- limma_contrasts(mtrx, pheno[,'", grp.var, "'], contrast.v=contr.v, trend=", use_trend))
+  lc.r <- paste0("contr.v <- ", contr.v)
+
+  if (elst){
+    lc.r <- c(lc.r, paste0("mtt <- limma_contrasts(elst, pheno[,'", grp.var, "'], contrast.v=contr.v"))
+  } else {
+    lc.r <- c(lc.r, paste0("mtt <- limma_contrasts(mtrx, pheno[,'", grp.var, "'], contrast.v=contr.v, trend=", use_trend))
+  }
+
   if (!is.null(limma.model)) lc.r[2] <- paste0(lc.r[2], ", design=des")
   if (use_aw) lc.r[2] <- paste0(lc.r[2], ", weights=aw")
   lc.r[2] <- paste0(lc.r[2], ")")

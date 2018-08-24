@@ -4,10 +4,12 @@
 \alias{sample_weights_chunk}
 \title{Sample weights chunk}
 \usage{
-sample_weights_chunk(aw.model = NULL)
+sample_weights_chunk(aw.model = NULL, elst = FALSE)
 }
 \arguments{
 \item{aw.model}{Model formula for \code{arrayWeights}.}
+
+\item{elst}{Logical indicating if expression object an EList.}
 }
 \description{
 Sample weights chunk.

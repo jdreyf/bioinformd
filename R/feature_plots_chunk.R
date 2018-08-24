@@ -8,14 +8,21 @@
 #' @param contrv Named vector of contrasts.
 #' @param use_annot Should \code{annot} be used.
 #' @param row.type Character in filename for plots.
+#' @param elst Logical indicating if expression object an EList.
 #' @export
 
-feature_plots_chunk <- function(grp.var="grp", path, proj.nm, contr.v, use_annot=TRUE, row.type="gene"){
+feature_plots_chunk <- function(grp.var="grp", path, proj.nm, contr.v, use_annot=TRUE, row.type="gene", elst=FALSE){
   fp.r <- c(paste0("signif_hist(mtt, name='", proj.nm, "_signif_hist')"),
             paste0("multi_volcano(tab=mtt, name='", proj.nm,  "_volcanoes')"),
-            "top.feats <- rownames(mtt)[1:min(200, nrow(mtt))]",
-            paste0("ezheat(mtrx[top.feats[1:50],], pheno.df=pheno, name='", proj.nm, "_top", row.type, "s_heat')"),
-            paste0("plot_by_grp(mtrx[top.feats,], grp=pheno[,'", grp.var, "'], name='", proj.nm, "_top", row.type, "s')"))
+            "top.feats <- rownames(mtt)[1:min(200, nrow(mtt))]")
+
+  if (elst){
+    fp.r <- c(fp.r, paste0("ezheat(elst$E[top.feats[1:50],], pheno.df=pheno, name='", proj.nm, "_top", row.type, "s_heat')"),
+              paste0("plot_by_grp(elst$E[top.feats,], grp=pheno[,'", grp.var, "'], name='", proj.nm, "_top", row.type, "s')"))
+  } else {
+    fp.r <- c(fp.r, paste0("ezheat(mtrx[top.feats[1:50],], pheno.df=pheno, name='", proj.nm, "_top", row.type, "s_heat')"),
+    paste0("plot_by_grp(mtrx[top.feats,], grp=pheno[,'", grp.var, "'], name='", proj.nm, "_top", row.type, "s')"))
+  }
 
   rows.type <- paste0(row.type, "s")
   fp.txt <- c(paste("## Plot", rows.type),

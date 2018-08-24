@@ -6,8 +6,8 @@
 #' @param path Path of RMD.
 #' @export
 
-norm_chunk <- function(input.files, path){
-  norm.filename <- paste0(sub(pattern="\\....$", "", input.files[1]), "_norm.csv")
+norm_chunk <- function(proj.nm, path){
+  norm.filename <- paste0(proj.nm, "_norm.csv")
 
   r_code <- c("cmed <- apply(mtrx, MARGIN=2, FUN=median)",
               "mtrx <- scale(mtrx, center=FALSE, scale=cmed/median(mtrx))",

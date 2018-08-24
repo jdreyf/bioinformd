@@ -4,12 +4,12 @@
 \alias{data_txt}
 \title{Write data description text}
 \usage{
-data_txt(data.type = "Gene expression", input.files = NULL, path)
+data_txt(input.files = NULL, path)
 }
 \arguments{
-\item{data.type}{Description of biomaterial and condition.}
-
 \item{input.files}{Character vector of input files.}
+
+\item{path}{The path to the input files.}
 }
 \description{
 Write data description text.
