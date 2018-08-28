@@ -65,5 +65,5 @@ bioinfo_rmd_contrasts <- function(filename, local.path=NULL, data.desc="Gene exp
   blocks[["refs"]] <- "## References"
 
   #i want text, but not yaml or code, to skip a line after each \n. Easiest to add "" to text.
-  write_blocks(filename=filename, blocks = blocks)
+  write_blocks(filename=paste0(filename, "0"), blocks = blocks)
 }

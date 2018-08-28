@@ -44,16 +44,15 @@ bioinfo_rmd_contrasts_voom <- function(filename, local.path=NULL, data.desc="Gen
 
   blocks[["feat_filt"]] <- feat_filt_voom_chunk(min.npergrp=min.npergrp, row.type = row.type)
 
-  blocks[["norm"]] <- norm_voom_chunk(proj.nm=proj.nm, voom.model=aw.model, path=net.path)
+  blocks[["norm"]] <- norm_voom_chunk(proj.nm=proj.nm, voom.model=aw.model, path=net.path, use_aw=use_aw)
 
-  aw.model <- paste0("~0+", grp.var)
-  blocks[["aw"]] <- sample_weights_chunk(aw.model=aw.model, elst=TRUE)
   blocks[["bp"]] <- boxplot_chunk(elist=TRUE)
   blocks[["pca"]] <- pca_chunk(grp.var=grp.var, proj.nm=proj.nm, covars=covars, elst=TRUE)
 
   use_annot <- ifelse(length(input.files) >= 3, TRUE, FALSE)
+  #don't use aw since already in elst
   blocks[["lc"]] <- limma_contrasts_chunk(grp.var=grp.var, contr.v=contr.v, path=net.path, proj.nm=proj.nm,
-                                          limma.model=limma.model, use_aw=use_aw, use_trend=use_trend,
+                                          limma.model=limma.model, use_aw=FALSE, use_trend=use_trend,
                                           use_annot=use_annot, row.type=row.type, elst=TRUE)
   blocks[["fp"]] <- feature_plots_chunk(grp.var=grp.var, path=net.path, proj.nm=proj.nm, contr.v=contr.v,
                                         use_annot=use_annot, elst=TRUE)
@@ -63,5 +62,5 @@ bioinfo_rmd_contrasts_voom <- function(filename, local.path=NULL, data.desc="Gen
   blocks[["refs"]] <- "## References"
 
   #i want text, but not yaml or code, to skip a line after each \n. Easiest to add "" to text.
-  write_blocks(filename=filename, blocks = blocks)
+  write_blocks(filename=paste0(filename, "0"), blocks = blocks)
 }

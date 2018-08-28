@@ -4,7 +4,7 @@
 \alias{norm_voom_chunk}
 \title{Normalization chunk}
 \usage{
-norm_voom_chunk(proj.nm, voom.model, path)
+norm_voom_chunk(proj.nm, voom.model, path, use_aw)
 }
 \arguments{
 \item{proj.nm}{Name of project.}
@@ -12,6 +12,8 @@ norm_voom_chunk(proj.nm, voom.model, path)
 \item{voom.model}{Model for design matrix.}
 
 \item{path}{Path of RMD.}
+
+\item{use_aw}{Logical indicating if array weights should be used.}
 }
 \description{
 Normalization chunk.
