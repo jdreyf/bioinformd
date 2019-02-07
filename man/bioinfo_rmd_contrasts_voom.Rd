@@ -7,8 +7,9 @@
 bioinfo_rmd_contrasts_voom(filename, local.path = NULL,
   data.desc = "Gene expression", input.files, data.logged = TRUE,
   data.nas = TRUE, min.npergrp = 3, grp.var = "grp", covars = NULL,
-  aw.model = paste0("~0+", grp.var), use_aw = TRUE, use_trend = FALSE,
-  contr.v, limma.model = NULL, row.type = "gene", pdb.files)
+  aw.model = paste0("~0+", grp.var), use_aw = TRUE,
+  use_trend = FALSE, contr.v, limma.model = NULL, row.type = "gene",
+  pdb.files)
 }
 \arguments{
 \item{filename}{Filename of RMD.}

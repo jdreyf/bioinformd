@@ -7,8 +7,9 @@
 bioinfo_rmd_contrasts(filename, local.path = NULL,
   data.desc = "Gene expression", input.files, data.logged = TRUE,
   data.nas = TRUE, min.npergrp = 3, grp.var = "grp", covars = NULL,
-  aw.model = paste0("~0+", grp.var), use_aw = TRUE, use_trend = FALSE,
-  contr.v, limma.model = NULL, row.type = "gene", pdb.files)
+  aw.model = paste0("~0+", grp.var), use_aw = TRUE,
+  use_trend = FALSE, contr.v, limma.model = NULL, row.type = "gene",
+  pdb.files)
 }
 \arguments{
 \item{filename}{Filename of RMD.}
@@ -50,6 +51,6 @@ If need to remove a sample, rerun with new \code{input.files}.
 \examples{
 \donttest{
 bioinfo_rmd_contrasts(filename="new_analysis", input.files = c("counts.csv", "pheno.csv"),
-contr.v=c(treat="treat-control"))
+contr.v='c(treat="treat-control")')
 }
 }
