@@ -39,7 +39,7 @@ bioinfo_rmd_contrasts <- function(filename, local.path=NULL, data.desc="Gene exp
 
   sc <- setup_chunk(path=local.path)
   dt <- data_txt(input.files = input.files, path=net.path)
-  rd <- read_chunk(input.files=input.files, data.logged=data.logged)
+  rd <- read_data_chunk(input.files=input.files, data.logged=data.logged)
   blocks <- list(yaml=yh, setup=sc, data=dt, read=rd)
   if (data.nas){
     blocks[["impute"]] <- impute_chunk(input.files=input.files, path=net.path)
@@ -65,5 +65,5 @@ bioinfo_rmd_contrasts <- function(filename, local.path=NULL, data.desc="Gene exp
   blocks[["refs"]] <- "## References"
 
   #i want text, but not yaml or code, to skip a line after each \n. Easiest to add "" to text.
-  write_blocks(filename=paste0(filename, "0"), blocks = blocks)
+  write_blocks(filename=paste0(filename, "_0"), blocks = blocks)
 }

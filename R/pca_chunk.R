@@ -20,7 +20,7 @@ pca_chunk <- function(grp.var, proj.nm, covars=NULL, elst=FALSE){
                paste0("We visualize the clustering of samples in 2D using the first two principal components. ",
                      "These two axes capture the maximum amount of variation in the data. The proportion of variation ",
                      "captured by each axis is shown in parentheses. A PCA with labeled samples is shown here. ",
-                     "A PCA without labels is at ", rmd_links(paste0(proj.nm, "_pca.png")), "."))
+                     "A PCA without labels is at ", rmd_links(paste0(proj.nm, "_pca.pdf")), "."))
 
   if (!is.null(covars)){
     pca.r <- c(pca.r, paste0("multi_covar_pca(mtrx, pheno, name='", proj.nm, "_covar_pca', grp.var='", grp.var, "')"))

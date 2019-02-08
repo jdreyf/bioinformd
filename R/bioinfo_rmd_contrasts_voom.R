@@ -39,7 +39,7 @@ bioinfo_rmd_contrasts_voom <- function(filename, local.path=NULL, data.desc="Gen
 
   sc <- setup_chunk(path=local.path)
   dt <- data_txt(input.files = input.files, path=net.path)
-  rd <- read_chunk(input.files=input.files, data.logged=data.logged)
+  rd <- read_data_chunk(input.files=input.files, data.logged=data.logged)
   blocks <- list(yaml=yh, setup=sc, data=dt, read=rd)
 
   blocks[["feat_filt"]] <- feat_filt_voom_chunk(min.npergrp=min.npergrp, row.type = row.type)
@@ -62,5 +62,5 @@ bioinfo_rmd_contrasts_voom <- function(filename, local.path=NULL, data.desc="Gen
   blocks[["refs"]] <- "## References"
 
   #i want text, but not yaml or code, to skip a line after each \n. Easiest to add "" to text.
-  write_blocks(filename=paste0(filename, "0"), blocks = blocks)
+  write_blocks(filename=paste0(filename, "_0"), blocks = blocks)
 }

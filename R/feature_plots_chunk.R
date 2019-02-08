@@ -13,7 +13,7 @@
 
 feature_plots_chunk <- function(grp.var="grp", path, proj.nm, contr.v, use_annot=TRUE, row.type="gene", elst=FALSE){
   fp.r <- c(paste0("signif_hist(mtt, name='", proj.nm, "_signif_hist')"),
-            paste0("multi_volcano(tab=mtt, name='", proj.nm,  "_volcanoes')"),
+            paste0("multi_volcano(tab=mtt, name='", proj.nm,  "_volcanoes', ntop.sig = 3)"),
             "top.feats <- rownames(mtt)[1:min(200, nrow(mtt))]")
 
   if (elst){
