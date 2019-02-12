@@ -6,7 +6,6 @@
 #' @param path Path of RMD.
 #' @param data.desc Description of data sources for \code{input.files}.
 #' @param input.files Character vector of input files. Matrix, pheno, and (optionally) annot.
-#' @param data.logged Logical indicating if data has been log2-transformed.
 #' @param data.nas Logical indicating if data has NAs.
 #' @param min.npergrp Minimum sample size per group.
 #' @param grp.var Variable name in \code{pheno} for group.
@@ -22,11 +21,11 @@
 #' @examples
 #' \donttest{
 #' bioinfo_rmd_contrasts(filename="new_analysis", input.files = c("counts.csv", "pheno.csv"),
-#' contr.v=c(treat="treat-control"))
+#' contr.v='c(treat="treat-control")')
 #' }
 
 bioinfo_rmd_contrasts_voom <- function(filename, local.path=NULL, data.desc="Gene expression",
-                              input.files, data.logged=TRUE, data.nas=TRUE, min.npergrp=3, grp.var="grp",
+                              input.files, data.nas=TRUE, min.npergrp=3, grp.var="grp",
                               covars=NULL, aw.model=paste0("~0+", grp.var), use_aw=TRUE, use_trend=FALSE,
                               contr.v, limma.model=NULL, row.type="gene", pdb.files){
   proj.nm <- sub("analyze_", "", filename)
@@ -39,7 +38,7 @@ bioinfo_rmd_contrasts_voom <- function(filename, local.path=NULL, data.desc="Gen
 
   sc <- setup_chunk(path=local.path)
   dt <- data_txt(input.files = input.files, path=net.path)
-  rd <- read_data_chunk(input.files=input.files, data.logged=data.logged)
+  rd <- read_data_chunk(input.files=input.files, data.logged=TRUE)
   blocks <- list(yaml=yh, setup=sc, data=dt, read=rd)
 
   blocks[["feat_filt"]] <- feat_filt_voom_chunk(min.npergrp=min.npergrp, row.type = row.type)

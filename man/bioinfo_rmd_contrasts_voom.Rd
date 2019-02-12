@@ -5,8 +5,8 @@
 \title{Write Bioinfo RMD}
 \usage{
 bioinfo_rmd_contrasts_voom(filename, local.path = NULL,
-  data.desc = "Gene expression", input.files, data.logged = TRUE,
-  data.nas = TRUE, min.npergrp = 3, grp.var = "grp", covars = NULL,
+  data.desc = "Gene expression", input.files, data.nas = TRUE,
+  min.npergrp = 3, grp.var = "grp", covars = NULL,
   aw.model = paste0("~0+", grp.var), use_aw = TRUE,
   use_trend = FALSE, contr.v, limma.model = NULL, row.type = "gene",
   pdb.files)
@@ -17,8 +17,6 @@ bioinfo_rmd_contrasts_voom(filename, local.path = NULL,
 \item{data.desc}{Description of data sources for \code{input.files}.}
 
 \item{input.files}{Character vector of input files. Matrix, pheno, and (optionally) annot.}
-
-\item{data.logged}{Logical indicating if data has been log2-transformed.}
 
 \item{data.nas}{Logical indicating if data has NAs.}
 
@@ -51,6 +49,6 @@ If need to remove a sample, rerun with new \code{input.files}.
 \examples{
 \donttest{
 bioinfo_rmd_contrasts(filename="new_analysis", input.files = c("counts.csv", "pheno.csv"),
-contr.v=c(treat="treat-control"))
+contr.v='c(treat="treat-control")')
 }
 }
