@@ -14,7 +14,8 @@ impute_chunk <- function(input.files, path, row.type="gene"){
                     ". The imputed matrix is at ", rmd_links(imputed.filename, path=path), "."))
 
   r_code <- c("mtrx.na <- mtrx",
-              "mtrx <- apply(mtrx.na, MARGIN=1, FUN=function(v){ v[is.na(v)] <- min(v[!is.na(v)])/2; v })",
+              "# Assume data is logged",
+              "mtrx <- t(apply(mtrx.na, MARGIN=1, FUN=function(v){ v[is.na(v)] <- min(v[!is.na(v)]) - 1; v }))",
               paste0("write.csv(mtrx, '", imputed.filename, "')"))
   chunk <- c(impute.txt, "```{r impute}", r_code, "```")
   return(chunk)

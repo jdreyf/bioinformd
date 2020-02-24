@@ -4,12 +4,24 @@
 \alias{bioinfo_rmd_contrasts}
 \title{Write Bioinfo RMD}
 \usage{
-bioinfo_rmd_contrasts(filename, local.path = NULL,
-  data.desc = "Gene expression", input.files, data.logged = TRUE,
-  data.nas = TRUE, min.npergrp = 3, grp.var = "grp", covars = NULL,
-  aw.model = paste0("~0+", grp.var), use_aw = TRUE,
-  use_trend = FALSE, contr.v, limma.model = NULL, row.type = "gene",
-  pdb.files)
+bioinfo_rmd_contrasts(
+  filename,
+  local.path = NULL,
+  data.desc = "Gene expression",
+  input.files,
+  data.logged = TRUE,
+  data.nas = TRUE,
+  min.npergrp = 3,
+  grp.var = "grp",
+  covars = NULL,
+  aw.model = paste0("~0+", grp.var),
+  use_aw = TRUE,
+  use_trend = FALSE,
+  contr.v,
+  limma.model = NULL,
+  row.type = "gene",
+  pdb.files
+)
 }
 \arguments{
 \item{filename}{Filename of RMD.}

@@ -4,8 +4,15 @@
 \alias{feature_plots_chunk}
 \title{Feature plots chunk}
 \usage{
-feature_plots_chunk(grp.var = "grp", path, proj.nm, contr.v,
-  use_annot = TRUE, row.type = "gene", elst = FALSE)
+feature_plots_chunk(
+  grp.var = "grp",
+  path,
+  proj.nm,
+  contr.v,
+  use_annot = TRUE,
+  row.type = "gene",
+  elst = FALSE
+)
 }
 \arguments{
 \item{grp.var}{Variable name in \code{pheno} for group.}

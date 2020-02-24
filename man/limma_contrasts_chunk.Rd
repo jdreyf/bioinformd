@@ -4,9 +4,18 @@
 \alias{limma_contrasts_chunk}
 \title{Limma contrasts chunk}
 \usage{
-limma_contrasts_chunk(grp.var, contr.v, path, proj.nm,
-  limma.model = NULL, use_aw = TRUE, use_trend = FALSE,
-  use_annot = TRUE, row.type = "gene", elst = FALSE)
+limma_contrasts_chunk(
+  grp.var,
+  contr.v,
+  path,
+  proj.nm,
+  limma.model = NULL,
+  use_aw = TRUE,
+  use_trend = FALSE,
+  use_annot = TRUE,
+  row.type = "gene",
+  elst = FALSE
+)
 }
 \arguments{
 \item{grp.var}{Variable name in \code{pheno} for group.}

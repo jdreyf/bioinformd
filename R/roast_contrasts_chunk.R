@@ -19,9 +19,9 @@ roast_contrasts_chunk <- function(grp.var, path, pdb.files="c(cp = 'c2.cp.v6.0')
 
   if (elst){
     rc.r <- c(rc.r,
-      paste0("\tpwys.fry <- roast_contrasts(elst, G=G, stats.tab = mtt.df, pheno[,'", grp.var, "'], contrast.v=contr.v, fun='fry'"))
+      paste0("\tpwys.fry <- roast_contrasts(elst, G=G, feat.tab = mtt.df, pheno[,'", grp.var, "'], contrast.v=contr.v, fun='fry'"))
   } else {
-    rc.r <- c(rc.r, paste0("\tpwys.fry <- roast_contrasts(mtrx, G=G, stats.tab = mtt.df, pheno[,'", grp.var, "'], contrast.v=contr.v,",
+    rc.r <- c(rc.r, paste0("\tpwys.fry <- roast_contrasts(mtrx, G=G, feat.tab = mtt.df, pheno[,'", grp.var, "'], contrast.v=contr.v,",
             "fun='fry', trend=", use_trend))
   }
 
@@ -31,7 +31,9 @@ roast_contrasts_chunk <- function(grp.var, path, pdb.files="c(cp = 'c2.cp.v6.0')
   rc.r <- c(rc.r, "}")
 
   rc.txt <- c("## Test pathways",
-              "We test differential abundance of pathways using limma roast [@roast].")
+              "We test differential abundance of pathways using limma roast [@roast] for pathways whose analytes",
+              "coordinately go up together or coordinately go down together. We also test if there is an",
+              "enrichment of analytes that change, even if some go up and others go down -- the *Mixed* test.")
 
   chunk <- c(rc.txt, "", "```{r rc}", rc.r, "```")
   return(chunk)
