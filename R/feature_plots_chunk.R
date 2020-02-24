@@ -37,7 +37,7 @@ feature_plots_chunk <- function(grp.var="grp", path, proj.nm, contr.v, use_annot
                    ". Several ", row.type, "s with the lowest p-values or largest fold changes are annotated automatically. "),
             "", paste0("The heatmap is at ", rmd_links(filenames=paste0(proj.nm, '_top', row.type, 's_heat.pdf'), path = path),
                        ". It plots the log2 expression of the 50 most significant ", row.type, "s. "), "",
-            paste0("The dotplots of the 200 most significant ", row.type, "s is at ",
+            paste0("The dotplots of the most significant ", row.type, "s is at ",
                    rmd_links(filenames=paste0(proj.nm, '_top', row.type, 's_dotplots.pdf'), path = path), "."))
 
   #if mult contrasts, use venn
