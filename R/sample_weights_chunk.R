@@ -27,7 +27,8 @@ sample_weights_chunk <- function(aw.model=NULL, elst=FALSE){
 
   sw.txt <- c("## Estimate sample quality weights",
               paste("We unbiasedly estimate emprical sample quality weights in the R package limma [@arrayweights].",
-                    "Weights here vary from `r signif(min(aw), 2)` to `r signif(max(aw), 2)`."))
+                    "Weights here vary from `r signif(min(aw), 2)` to `r signif(max(aw), 2)`.",
+                    "If all samples were weighted equally, they would all have weight = 1."))
 
   sw.r2 <- c("barplot(aw, las=3, main='Sample quality weights')", "abline(h=1, lty=2)")
 

@@ -1,7 +1,7 @@
 #' Boxplot chunk
 #'
 #' Boxplot chunk.
-#' @param elst Logical indicating if expression object an EList.
+#' @param elist Logical indicating if expression object an EList.
 #' @export
 
 boxplot_chunk <- function(elist=FALSE){

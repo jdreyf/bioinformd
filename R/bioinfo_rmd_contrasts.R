@@ -3,7 +3,7 @@
 #' Write Bioinformatics RMD workflow.
 #'
 #' @param filename Filename of RMD.
-#' @param path Path of RMD.
+#' @param local.path Path of RMD.
 #' @param data.desc Description of data sources for \code{input.files}.
 #' @param input.files Character vector of input files. Matrix, pheno, and (optionally) annot.
 #' @param data.logged Logical indicating if data has been log2-transformed.
@@ -11,6 +11,7 @@
 #' @param min.npergrp Minimum sample size per group.
 #' @param grp.var Variable name in \code{pheno} for group.
 #' @param covars Variable name in \code{pheno} for covariates.
+#' @param aw.model Model for `limma::arrayWeights`.
 #' @param use_aw Logical indicating if array weights should be used.
 #' @param use_trend Logical indicating if \code{limma trend} should be used.
 #' @param contr.v Named vector of contrasts.

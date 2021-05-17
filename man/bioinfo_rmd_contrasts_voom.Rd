@@ -25,6 +25,8 @@ bioinfo_rmd_contrasts_voom(
 \arguments{
 \item{filename}{Filename of RMD.}
 
+\item{local.path}{Path of RMD.}
+
 \item{data.desc}{Description of data sources for \code{input.files}.}
 
 \item{input.files}{Character vector of input files. Matrix, pheno, and (optionally) annot.}
@@ -37,6 +39,8 @@ bioinfo_rmd_contrasts_voom(
 
 \item{covars}{Variable name in \code{pheno} for covariates.}
 
+\item{aw.model}{Model for `limma::arrayWeights`.}
+
 \item{use_aw}{Logical indicating if array weights should be used.}
 
 \item{use_trend}{Logical indicating if \code{limma trend} should be used.}
@@ -48,8 +52,6 @@ bioinfo_rmd_contrasts_voom(
 \item{row.type}{Character in filename for features.}
 
 \item{pdb.files}{Text defining pathway database files.}
-
-\item{path}{Path of RMD.}
 }
 \description{
 Write Bioinformatics RMD workflow.

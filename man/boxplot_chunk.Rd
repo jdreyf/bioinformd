@@ -7,7 +7,7 @@
 boxplot_chunk(elist = FALSE)
 }
 \arguments{
-\item{elst}{Logical indicating if expression object an EList.}
+\item{elist}{Logical indicating if expression object an EList.}
 }
 \description{
 Boxplot chunk.

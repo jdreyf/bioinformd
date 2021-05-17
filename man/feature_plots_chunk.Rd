@@ -21,13 +21,13 @@ feature_plots_chunk(
 
 \item{proj.nm}{Name of project to paste into filenames.}
 
+\item{contr.v}{Named vector of contrasts.}
+
 \item{use_annot}{Should \code{annot} be used.}
 
 \item{row.type}{Character in filename for plots.}
 
 \item{elst}{Logical indicating if expression object an EList.}
-
-\item{contrv}{Named vector of contrasts.}
 }
 \description{
 Feature plots chunk.

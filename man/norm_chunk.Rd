@@ -7,9 +7,9 @@
 norm_chunk(proj.nm, path)
 }
 \arguments{
-\item{path}{Path of RMD.}
+\item{proj.nm}{Project name.}
 
-\item{input.files}{Character vector of input files. Should be data.matrix, pheno, then optionally annot.}
+\item{path}{Path of RMD.}
 }
 \description{
 Normalization chunk.

@@ -2,20 +2,7 @@
 #'
 #' Write Bioinformatics RMD workflow.
 #'
-#' @param filename Filename of RMD.
-#' @param path Path of RMD.
-#' @param data.desc Description of data sources for \code{input.files}.
-#' @param input.files Character vector of input files. Matrix, pheno, and (optionally) annot.
-#' @param data.nas Logical indicating if data has NAs.
-#' @param min.npergrp Minimum sample size per group.
-#' @param grp.var Variable name in \code{pheno} for group.
-#' @param covars Variable name in \code{pheno} for covariates.
-#' @param use_aw Logical indicating if array weights should be used.
-#' @param use_trend Logical indicating if \code{limma trend} should be used.
-#' @param contr.v Named vector of contrasts.
-#' @param limma.model Model formula for \code{limma}, if want a design matrix.
-#' @param row.type Character in filename for features.
-#' @param pdb.files Text defining pathway database files.
+#' @inheritParams bioinfo_rmd_contrasts
 #' @details If need to remove a sample, rerun with new \code{input.files}.
 #' @export
 #' @examples

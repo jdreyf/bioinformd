@@ -2,7 +2,7 @@
 #'
 #' Normalization chunk.
 #'
-#' @param input.files Character vector of input files. Should be data.matrix, pheno, then optionally annot.
+#' @param proj.nm Project name.
 #' @param path Path of RMD.
 #' @export
 

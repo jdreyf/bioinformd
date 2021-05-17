@@ -5,7 +5,7 @@
 #' @param grp.var Variable name in \code{pheno} for group.
 #' @param path Path of RMD.
 #' @param proj.nm Name of project to paste into filenames.
-#' @param contrv Named vector of contrasts.
+#' @param contr.v Named vector of contrasts.
 #' @param use_annot Should \code{annot} be used.
 #' @param row.type Character in filename for plots.
 #' @param elst Logical indicating if expression object an EList.
@@ -17,10 +17,12 @@ feature_plots_chunk <- function(grp.var="grp", path, proj.nm, contr.v, use_annot
             "top.feats <- rownames(mtt)[1:min(200, nrow(mtt))]")
 
   if (elst){
-    fp.r <- c(fp.r, paste0("ezheat(elst$E[top.feats[1:50],], pheno.df=pheno, name='", proj.nm, "_top", row.type, "s_heat')"),
-              paste0("plot_by_grp(elst$E[top.feats,], grp=pheno[,'", grp.var, "'], name='", proj.nm, "_top", row.type, "s')"))
+    fp.r <- fp.r <- c(fp.r, paste0("ezheat(elst$E[top.feats[1:50],], pheno.df=pheno[,'", grp.var, ", drop=FALSE'], name='",
+                                   proj.nm, "_top", row.type, "s_heat', reorder_rows = TRUE)"),
+                      paste0("plot_by_grp(elst$E[top.feats,], grp=pheno[,'", grp.var, "'], name='", proj.nm, "_top", row.type, "s')"))
   } else {
-    fp.r <- c(fp.r, paste0("ezheat(mtrx[top.feats[1:50],], pheno.df=pheno, name='", proj.nm, "_top", row.type, "s_heat')"),
+    fp.r <- c(fp.r, paste0("ezheat(mtrx[top.feats[1:50],], pheno.df=pheno[,'", grp.var, ", drop=FALSE'], name='",
+                           proj.nm, "_top", row.type, "s_heat', reorder_rows = TRUE)"),
     paste0("plot_by_grp(mtrx[top.feats,], grp=pheno[,'", grp.var, "'], name='", proj.nm, "_top", row.type, "s')"))
   }
 
