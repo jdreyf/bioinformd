@@ -7,7 +7,8 @@
 roast_contrasts_chunk(
   grp.var,
   path,
-  pdb.files = "cp = 'c2.cp.v6.0'",
+  gmt_abbrev = c("reactome", "tft"),
+  gmt_prefix = c("c2.cp.reactome", "c3.tft.gtrd"),
   use_des = FALSE,
   use_aw = TRUE,
   use_trend = FALSE,
@@ -19,7 +20,9 @@ roast_contrasts_chunk(
 
 \item{path}{Path of RMD.}
 
-\item{pdb.files}{Text defining pathway database files.}
+\item{gmt_abbrev}{Character vector of abbreviation of pathway name, e.g. "reactome" or "tft".}
+
+\item{gmt_prefix}{Character vector of GMT file(s) prefixes.}
 
 \item{use_des}{Logical indicating if design (from limma chunk) should be used.}
 

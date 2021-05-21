@@ -20,7 +20,8 @@ bioinfo_rmd_contrasts(
   contr.v,
   limma.model = NULL,
   row.type = "gene",
-  pdb.files
+  gmt_abbrev = c("reactome", "tft"),
+  gmt_prefix = c("c2.cp.reactome", "c3.tft.gtrd")
 )
 }
 \arguments{
@@ -54,7 +55,9 @@ bioinfo_rmd_contrasts(
 
 \item{row.type}{Character in filename for features.}
 
-\item{pdb.files}{Text defining pathway database files.}
+\item{gmt_abbrev}{Character vector of abbreviation of pathway name, e.g. "reactome" or "tft".}
+
+\item{gmt_prefix}{Character vector of GMT file(s) prefixes.}
 }
 \description{
 Write Bioinformatics RMD workflow.

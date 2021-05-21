@@ -4,17 +4,19 @@
 #'
 #' @param grp.var Variable name in \code{pheno} for group.
 #' @param path Path of RMD.
-#' @param pdb.files Text defining pathway database files.
 #' @param use_des Logical indicating if design (from limma chunk) should be used.
 #' @param use_aw Logical indicating if array weights should be used.
 #' @param use_trend Logical indicating if \code{limma trend} should be used.
 #' @param elst Logical indicating if expression object an EList.
+#' @inheritParams bioinfo_rmd_contrasts
 #' @export
 
-roast_contrasts_chunk <- function(grp.var, path, pdb.files="cp = 'c2.cp.v6.0'", use_des=FALSE, use_aw=TRUE,
-                                  use_trend=FALSE, elst=FALSE){
+roast_contrasts_chunk <- function(grp.var, path, gmt_abbrev=c('reactome', 'tft'),
+                                  gmt_prefix=c('c2.cp.reactome', 'c3.tft.gtrd'),
+                                  use_des=FALSE, use_aw=TRUE, use_trend=FALSE, elst=FALSE){
 
-  rc.r <- c(paste0("pdb.files <- c(", pdb.files), ")", paste0("for (i in seq_along(pdb.files)){"),
+  rc.r <- c(paste0("pdb.files <- c(", paste0(gmt_abbrev, "='", gmt_prefix, "'", collapse=", "), ")"),
+            paste0("for (i in seq_along(pdb.files)){"),
   "\tG <- read_gmt(paste0('B:/annotations/gene_sets/', pdb.files[i], '.symbols.gmt'))")
 
   if (elst){
@@ -37,8 +39,8 @@ roast_contrasts_chunk <- function(grp.var, path, pdb.files="cp = 'c2.cp.v6.0'", 
               "",
               "We download pathway databases via the Broad Institute's",
               "[Molecular Signature Database](http://www.gsea-msigdb.org/gsea/msigdb/collections.jsp)[@liberzon_2011].",
-              paste0("The results are at", rmd_links(filenames = 'PDB_NAME_fry.xlsx', path = path)), ".",
-              "The columns give the number of genes in the set, the direction of the gene set, the proportion of genes up-regulated at p<0.05",
+              "The results are at", paste0(rmd_links(filenames = paste0(gmt_abbrev, '_fry.xlsx'), path = path), collapse=", "),
+              ". The columns give the number of genes in the set, the direction of the gene set, the proportion of genes up-regulated at p<0.05",
               "the proportion of genes down-regulated at p<0.05, and the p-value and FDR for testing if the gene set is coordinately up/down",
               "and for the Mixed test.")
 

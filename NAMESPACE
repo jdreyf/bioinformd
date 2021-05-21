@@ -3,6 +3,7 @@
 export(bioinfo_rmd_contrasts)
 export(bioinfo_rmd_contrasts_voom)
 export(boxplot_chunk)
+export(check_chunk)
 export(data_txt)
 export(feat_filt_chunk)
 export(feat_filt_voom_chunk)

@@ -14,7 +14,8 @@
 bioinfo_rmd_contrasts_voom <- function(filename, local.path=NULL, data.desc="Gene expression",
                               input.files, data.nas=TRUE, min.npergrp=3, grp.var="grp",
                               covars=NULL, aw.model=paste0("~0+", grp.var), use_aw=TRUE, use_trend=FALSE,
-                              contr.v, limma.model=NULL, row.type="gene", pdb.files){
+                              contr.v, limma.model=NULL, row.type="gene", gmt_abbrev=c('reactome', 'tft'),
+                              gmt_prefix=c('c2.cp.reactome', 'c3.tft.gtrd')){
   proj.nm <- sub("analyze_", "", filename)
   yaml.title <- gsub("_", " ", proj.nm)
   yh <- yaml_header(yaml.title=yaml.title)
@@ -44,6 +45,8 @@ bioinfo_rmd_contrasts_voom <- function(filename, local.path=NULL, data.desc="Gen
                                         use_annot=use_annot, elst=TRUE)
 
   blocks[["rc"]] <- roast_contrasts_chunk(grp.var=grp.var, path=net.path, elst=TRUE, use_aw=FALSE)
+
+  blocks[["check"]] <- check_chunk()
 
   blocks[["refs"]] <- "## References"
 

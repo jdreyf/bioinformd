@@ -17,7 +17,8 @@
 #' @param contr.v Named vector of contrasts.
 #' @param limma.model Model formula for \code{limma}, if want a design matrix.
 #' @param row.type Character in filename for features.
-#' @param pdb.files Text defining pathway database files.
+#' @param gmt_abbrev Character vector of abbreviation of pathway name, e.g. "reactome" or "tft".
+#' @param gmt_prefix Character vector of GMT file(s) prefixes.
 #' @details If need to remove a sample, rerun with new \code{input.files}.
 #' @export
 #' @examples
@@ -29,7 +30,8 @@
 bioinfo_rmd_contrasts <- function(filename, local.path=NULL, data.desc="Gene expression",
                               input.files, data.logged=TRUE, data.nas=TRUE, min.npergrp=3, grp.var="grp",
                               covars=NULL, aw.model=paste0("~0+", grp.var), use_aw=TRUE, use_trend=FALSE,
-                              contr.v, limma.model=NULL, row.type="gene", pdb.files){
+                              contr.v, limma.model=NULL, row.type="gene", gmt_abbrev=c('reactome', 'tft'),
+                              gmt_prefix=c('c2.cp.reactome', 'c3.tft.gtrd')){
   proj.nm <- sub("analyze_", "", filename)
   yaml.title <- gsub("_", " ", proj.nm)
   yh <- yaml_header(yaml.title=yaml.title)
@@ -61,7 +63,9 @@ bioinfo_rmd_contrasts <- function(filename, local.path=NULL, data.desc="Gene exp
                                           use_annot=use_annot, row.type=row.type)
   blocks[["fp"]] <- feature_plots_chunk(grp.var=grp.var, path=net.path, proj.nm=proj.nm, contr.v=contr.v, use_annot=use_annot)
 
-  blocks[["rc"]] <- roast_contrasts_chunk(grp.var=grp.var, path=net.path)
+  blocks[["rc"]] <- roast_contrasts_chunk(grp.var=grp.var, path=net.path, gmt_abbrev=gmt_abbrev, gmt_prefix = gmt_prefix)
+
+  blocks[["check"]] <- check_chunk()
 
   blocks[["refs"]] <- "## References"
 
