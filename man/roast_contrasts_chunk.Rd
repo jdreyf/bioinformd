@@ -7,7 +7,7 @@
 roast_contrasts_chunk(
   grp.var,
   path,
-  pdb.files = "c(cp = 'c2.cp.v6.0')",
+  pdb.files = "cp = 'c2.cp.v6.0'",
   use_des = FALSE,
   use_aw = TRUE,
   use_trend = FALSE,

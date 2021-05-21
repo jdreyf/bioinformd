@@ -11,10 +11,10 @@
 #' @param elst Logical indicating if expression object an EList.
 #' @export
 
-roast_contrasts_chunk <- function(grp.var, path, pdb.files="c(cp = 'c2.cp.v6.0')", use_des=FALSE, use_aw=TRUE,
+roast_contrasts_chunk <- function(grp.var, path, pdb.files="cp = 'c2.cp.v6.0'", use_des=FALSE, use_aw=TRUE,
                                   use_trend=FALSE, elst=FALSE){
 
-  rc.r <- c(paste0("pdb.files <- ", pdb.files), paste0("for(i in seq_along(pdb.files)){"),
+  rc.r <- c(paste0("pdb.files <- c(", pdb.files), ")", paste0("for (i in seq_along(pdb.files)){"),
   "\tG <- read_gmt(paste0('B:/annotations/gene_sets/', pdb.files[i], '.symbols.gmt'))")
 
   if (elst){
@@ -33,7 +33,14 @@ roast_contrasts_chunk <- function(grp.var, path, pdb.files="c(cp = 'c2.cp.v6.0')
   rc.txt <- c("## Test pathways",
               "We test differential abundance of pathways using limma roast [@roast] for pathways whose analytes",
               "coordinately go up together or coordinately go down together. We also test if there is an",
-              "enrichment of analytes that change, even if some go up and others go down -- the *Mixed* test.")
+              "enrichment of analytes that change, even if some go up and others go down -- the *Mixed* test.",
+              "",
+              "We download pathway databases via the Broad Institute's",
+              "[Molecular Signature Database](http://www.gsea-msigdb.org/gsea/msigdb/collections.jsp)[@liberzon_2011].",
+              paste0("The results are at", rmd_links(filenames = 'PDB_NAME_fry.xlsx', path = path)), ".",
+              "The columns give the number of genes in the set, the direction of the gene set, the proportion of genes up-regulated at p<0.05",
+              "the proportion of genes down-regulated at p<0.05, and the p-value and FDR for testing if the gene set is coordinately up/down",
+              "and for the Mixed test.")
 
   chunk <- c(rc.txt, "", "```{r rc}", rc.r, "```")
   return(chunk)
