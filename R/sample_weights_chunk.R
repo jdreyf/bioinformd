@@ -26,7 +26,7 @@ sample_weights_chunk <- function(aw.model=NULL, elst=FALSE){
   sw.r <- c(sw.r, "names(aw) <- colnames(mtrx)")
 
   sw.txt <- c("## Estimate sample quality weights",
-              paste("We unbiasedly estimate emprical sample quality weights in the R package limma [@arrayweights].",
+              paste("We unbiasedly estimate empirical sample quality weights in the R package limma [@arrayweights].",
                     "Weights here vary from `r signif(min(aw), 2)` to `r signif(max(aw), 2)`.",
                     "If all samples were weighted equally, they would all have weight = 1."))
 

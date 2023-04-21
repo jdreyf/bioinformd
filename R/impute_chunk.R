@@ -2,7 +2,7 @@
 #'
 #' Impute chunk.
 #'
-#' @param input.files Character vector of input files. Should be data.matrix, pheno, then optionally annot.
+#' @param input.files Character vector of input files. Should be data matrix, pheno, then optionally annot.
 #' @param path Path of RMD.
 #' @param row.type Character in filename for features.
 #' @export

@@ -7,7 +7,7 @@
 read_data_chunk(input.files, data.logged)
 }
 \arguments{
-\item{input.files}{Character vector of input files. Should be data.matrix, pheno, then optionally annot.}
+\item{input.files}{Character vector of input files. Should be data matrix, pheno, then optionally annot.}
 
 \item{data.logged}{Logical indicating if data has been log2-transformed.}
 }

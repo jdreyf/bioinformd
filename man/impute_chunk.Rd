@@ -7,7 +7,7 @@
 impute_chunk(input.files, path, row.type = "gene")
 }
 \arguments{
-\item{input.files}{Character vector of input files. Should be data.matrix, pheno, then optionally annot.}
+\item{input.files}{Character vector of input files. Should be data matrix, pheno, then optionally annot.}
 
 \item{path}{Path of RMD.}
 
