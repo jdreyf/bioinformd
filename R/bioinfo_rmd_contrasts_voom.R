@@ -21,8 +21,8 @@ bioinfo_rmd_contrasts_voom <- function(filename, local.path=NULL, data.desc="Gen
   yh <- yaml_header(yaml.title=yaml.title)
 
   if (is.null(local.path)) local.path <- getwd()
-  net.path <- sub("B:/|/n/bioinformatics/", "//jdcfs1/cores/bioinformatics/", local.path)
-  local.path <- sub("B:/|/n/bioinformatics/", "", local.path)
+  net.path <- sub("B:/", "J:/cores/bioinformatics/", local.path)
+  local.path <- sub("B:/", "", local.path)
 
   sc <- setup_chunk(path=local.path)
   dt <- data_txt(input.files = input.files, path=net.path)
