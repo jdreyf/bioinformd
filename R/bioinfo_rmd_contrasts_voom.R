@@ -48,7 +48,7 @@ bioinfo_rmd_contrasts_voom <- function(filename, local.path=NULL, data.desc="Gen
 
   blocks[["check"]] <- check_chunk()
 
-  blocks[["refs"]] <- "## References"
+  blocks[["refs"]] <- "# References"
 
   #i want text, but not yaml or code, to skip a line after each \n. Easiest to add "" to text.
   write_blocks(filename=paste0(filename, "_0"), blocks = blocks)

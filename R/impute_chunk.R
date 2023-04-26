@@ -10,7 +10,7 @@
 impute_chunk <- function(input.files, path, row.type="gene"){
   imputed.filename <- paste0(sub(pattern="\\....$", "", input.files[1]), "_imputed.csv")
 
-  impute.txt <- c("## Impute missing values", paste0("We impute using half the minimum non-missing value of each ", row.type,
+  impute.txt <- c("# Impute missing values", paste0("We impute using half the minimum non-missing value of each ", row.type,
                     ". The imputed matrix is at ", rmd_links(imputed.filename, path=path), "."))
 
   r_code <- c("mtrx.na <- mtrx",

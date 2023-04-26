@@ -10,7 +10,7 @@ meanvar_trend_chunk <- function(voom.model, use_trend=FALSE, row.type="row"){
   mvt.r <- c(paste0("voom.des <- model.matrix(", voom.model, ", data=pheno)"),
              "v <- voom(2^mtrx, design=voom.des, plot = TRUE)")
 
-  mvt.txt <- c("## Assess mean-variance trend",
+  mvt.txt <- c("# Assess mean-variance trend",
               paste0("We assess if there is a trend between a", row.type, "'s average abundance and its variance."))
 
   if (use_trend){

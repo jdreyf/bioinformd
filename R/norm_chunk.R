@@ -13,7 +13,7 @@ norm_chunk <- function(proj.nm, path){
               "mtrx <- scale(mtrx, center=FALSE, scale=cmed/median(mtrx))",
               paste0("write.csv(mtrx, '", norm.filename, "')"))
 
-  norm.txt <- c("## Normalize", paste0("We normalize samples to have the same median. The normalized matrix is at ",
+  norm.txt <- c("# Normalize", paste0("We normalize samples to have the same median. The normalized matrix is at ",
               rmd_links(norm.filename, path=path),
               ". After normalization, each sample's median is `r signif(median(mtrx), 2)`."))
 

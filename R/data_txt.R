@@ -7,6 +7,6 @@
 #' @export
 
 data_txt <- function(input.files=NULL, path){
-  dt <- c("## Data", paste0("Data from ", paste(rmd_links(input.files, path=path), collapse = " and "), "."))
+  dt <- c("# Data", paste0("Data from ", paste(rmd_links(input.files, path=path), collapse = " and "), "."))
   return(dt)
 }

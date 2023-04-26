@@ -5,7 +5,7 @@
 #' @export
 
 boxplot_chunk <- function(elist=FALSE){
-  bp.txt <- c("## Visualize distributions",
+  bp.txt <- c("# Visualize distributions",
               "We visualize each sample's distribution with a boxplot to ensure the samples are comparable.")
 
   if (elist){

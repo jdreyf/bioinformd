@@ -39,7 +39,7 @@ norm_voom_chunk <- function(proj.nm, voom.model, path, use_aw){
       "barplot(aw, las=3, main='Sample quality weights')", "abline(h=1, lty=2)")
   }
 
-  chunk <- c("## Normalize", "```{r norm, include=TRUE, fig.height=4}", r_code, "```", "", norm.txt)
+  chunk <- c("# Normalize", "```{r norm, include=TRUE, fig.height=4}", r_code, "```", "", norm.txt)
   if (use_aw){
     chunk <- c(chunk, "```{r aw_bar, include=TRUE, fig.height=4}", sw.r, "```")
   }

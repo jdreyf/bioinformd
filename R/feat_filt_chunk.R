@@ -18,6 +18,6 @@ feat_filt_chunk <- function(min.npergrp, row.type="row"){
     ". We filter out ", rows.type, " that don't have at least `r ceiling(0.8*min.npergrp)` non-NA values.",
      " After filtering, there are `r length(feat.ss)` ", rows.type, ".")
 
-  chunk <- c(paste("## Filter", rows.type), "```{r feat_filt}", r_code, "```", ffilt.txt)
+  chunk <- c(paste("# Filter", rows.type), "```{r feat_filt}", r_code, "```", ffilt.txt)
   return(chunk)
 }

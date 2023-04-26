@@ -16,7 +16,7 @@ pca_chunk <- function(grp.var, proj.nm, covars=NULL, elst=FALSE){
                paste0("ezpca(mtrx, pheno, color = '", grp.var, "', name = '", proj.nm, "_pca')"))
   }
 
-  pca.txt <- c("## Principal Components Analysis (PCA)",
+  pca.txt <- c("# Principal Components Analysis (PCA)",
                paste0("We visualize the clustering of samples in 2D using the first two principal components. ",
                      "These two axes capture the maximum amount of variation in the data. The proportion of variation ",
                      "captured by each axis is shown in parentheses. A PCA with labeled samples is shown here. ",
