@@ -26,6 +26,7 @@ norm_voom_chunk <- function(proj.nm, voom.model, path, use_aw){
   norm.txt <- paste0("We normalize samples using the TMM method [@tmm]. This method calculates normalization factors ",
                      "that represent scaling terms for the effective library sizes. The normalization factors range from ",
                        "`r signif(min(dge$samples$norm.factors), 2)` to `r signif(max(dge$samples$norm.factors), 2)`. ",
+                       "If no normalization was needed, all factors would be one. ",
                        "We use the normalization factors to calculate log2 counts per million (logCPM), and to estimate ",
                        "precision weights given the mean-variance trend, which allows for linear modeling [@voom]. ",
                        "The normalized matrix of logCPM is at ", rmd_links(norm.filename, path=path), ".")
