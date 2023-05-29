@@ -33,7 +33,7 @@ roast_contrasts_chunk <- function(grp.var, path, gmt_abbrev=c('reactome', 'tft')
   rc.r <- c(rc.r, "}")
 
   rc.txt <- c("# Test pathways",
-              "We test differential abundance of pathways using limma roast [@roast] for pathways whose analytes",
+              "We test differential abundance of pathways using limma roast [@wu_2010] for pathways whose analytes",
               "coordinately go up together or coordinately go down together. We also test if there is an",
               "enrichment of analytes that change, even if some go up and others go down -- the *Mixed* test.",
               "",

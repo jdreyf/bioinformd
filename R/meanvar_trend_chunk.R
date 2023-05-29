@@ -14,7 +14,7 @@ meanvar_trend_chunk <- function(voom.model, use_trend=FALSE, row.type="row"){
               paste0("We assess if there is a trend between a", row.type, "'s average abundance and its variance."))
 
   if (use_trend){
-    mvt.txt <- c(mvt.txt, "We see a trend, so we account for it in variance estimation using limma-trend [@voom].")
+    mvt.txt <- c(mvt.txt, "We see a trend, so we account for it in variance estimation using limma-trend [@law_2014].")
   } else {
     mvt.txt <- c(mvt.txt, "We do not see a robust enough trend that is worth accounting for in variance estimation.")
   }

@@ -12,11 +12,11 @@ feat_filt_voom_chunk <- function(min.npergrp, row.type="row"){
 
   r_code <- c(paste0("min.npergrp <- ", min.npergrp),
               "dge <- DGEList(counts=mtrx)",
-              "feat.ss <- which(rowSums(cpm(dge) > 1) >= 0.8*min.npergrp)",
+              "feat.ss <- which( rowSums(cpm(dge) > round(10**7/median(colSums(dge$counts))) ) >= 0.8*min.npergrp)",
               "dge <- dge[feat.ss,]")
 
   ffilt.txt <- paste0("Before filtering, there are `r nrow(mtrx)` ", rows.type,
-    ". We filter out ", rows.type, " that don't have at least 1 CPM in `r ceiling(0.8*min.npergrp)` samples.",
+    ". We filter out ", rows.type, " that don't have at least `r round(10**7/median(colSums(dge$counts)))` CPM in `r ceiling(0.8*min.npergrp)` samples.",
      " After filtering, there are `r length(feat.ss)` ", rows.type, ".")
 
   chunk <- c(paste("# Filter", rows.type), "```{r feat_filt}", r_code, "```", ffilt.txt)
