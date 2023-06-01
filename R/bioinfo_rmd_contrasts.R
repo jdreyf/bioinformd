@@ -67,6 +67,8 @@ bioinfo_rmd_contrasts <- function(filename, local.path=NULL, data.desc="Gene exp
 
   blocks[["check"]] <- check_chunk()
 
+  blocks[["session"]] <- session_chunk()
+
   blocks[["refs"]] <- "# References"
 
   #i want text, but not yaml or code, to skip a line after each \n. Easiest to add "" to text.
