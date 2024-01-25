@@ -51,6 +51,9 @@ bioinfo_rmd_contrasts <- function(filename, local.path=NULL, data.desc="Gene exp
   if (data.nas){
     blocks[["feat_filt"]] <- feat_filt_chunk(min.npergrp=min.npergrp, row.type = row.type)
   }
+
+  blocks[["wr"]] <- write_data_chunk(proj.nm = proj.nm, use_annot=use_annot, row.type=row.type)
+
   aw.model <- paste0("~0+", grp.var)
   blocks[["aw"]] <- sample_weights_chunk(aw.model=aw.model)
   blocks[["bp"]] <- boxplot_chunk()

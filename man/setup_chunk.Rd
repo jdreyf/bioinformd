@@ -4,10 +4,12 @@
 \alias{setup_chunk}
 \title{Write setup chunk}
 \usage{
-setup_chunk(path)
+setup_chunk(path, link2wd = TRUE)
 }
 \arguments{
-\item{path}{Path of working directory.}
+\item{path}{Local path of working directory}
+
+\item{link2wd}{Boolean; should links be to working directory on Joslin network? Otherwise, links are to local folder}
 }
 \description{
 Write setup chunk.

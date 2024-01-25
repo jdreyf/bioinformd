@@ -33,6 +33,8 @@ bioinfo_rmd_contrasts_voom <- function(filename, local.path=NULL, data.desc="Gen
 
   blocks[["norm"]] <- norm_voom_chunk(proj.nm=proj.nm, voom.model=aw.model, path=net.path, use_aw=use_aw)
 
+  blocks[["wr"]] <- write_data_chunk(proj.nm = proj.nm, use_annot=use_annot, row.type=row.type)
+
   blocks[["bp"]] <- boxplot_chunk(elist=TRUE)
   blocks[["pca"]] <- pca_chunk(grp.var=grp.var, proj.nm=proj.nm, covars=covars, elst=TRUE)
 

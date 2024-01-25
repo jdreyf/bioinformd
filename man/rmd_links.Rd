@@ -9,8 +9,8 @@ rmd_links(filenames, path = NULL)
 \arguments{
 \item{filenames}{Filenames to link to, possibly named.}
 
-\item{path}{Path to prefix.}
+\item{path}{Path to prefix. Currently ignored.}
 }
 \description{
-Create RMD links.
+Create RMD links using jdcbioinfo::make_file_links.
 }

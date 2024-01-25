@@ -1,10 +1,13 @@
 Package: bioinformd
 Title: Construct RMD analysis files
-Version: 0.0.0.9006
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Version: 0.0.0.9007
+Authors@R: person("Jonathan", "Dreyfuss", email = "jdreyf@bu.edu", role = c("aut", "cre"))
+Description: Construct RMD analysis files for use by the JDC Bioinformatics Core
 Depends: R (>= 3.5.0)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.2.3
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
