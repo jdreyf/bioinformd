@@ -25,14 +25,13 @@ sample_weights_chunk <- function(aw.model=NULL, elst=FALSE){
 
   sw.r <- c(sw.r, "names(aw) <- colnames(mtrx)")
 
-  sw.txt <- c("# Estimate sample quality weights",
-              paste("We unbiasedly estimate empirical sample quality weights [@ritchie_2006] in the R package limma.",
+  sw.txt <- c(paste("We unbiasedly estimate empirical sample quality weights [@ritchie_2006] in the R package limma.",
                     "Weights here vary from `r signif(min(aw), 2)` to `r signif(max(aw), 2)`.",
                     "If all samples were weighted equally, they would all have weight = 1."))
 
   sw.r2 <- c("barplot(aw, las=3, main='Sample quality weights')", "abline(h=1, lty=2)")
 
-  chunk <- c(sw.txt[1], "```{r aw}", sw.r, "```", sw.txt[-1], "", "```{r aw_bar, include=TRUE, fig.height=4}",
-             sw.r2, "```")
+  chunk <- c("# Estimate sample quality weights", "```{r aw}", sw.r, "```", "",
+             "```{r aw_bar, include=TRUE, fig.height=4}", sw.r2, "```", "", sw.txt)
   return(chunk)
 }

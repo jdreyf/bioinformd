@@ -27,8 +27,7 @@ feature_plots_chunk <- function(grp.var="grp", path, proj.nm, contr.v, use_annot
   }
 
   rows.type <- paste0(row.type, "s")
-  fp.txt <- c(paste("# Plot", rows.type),
-            paste0("We plot the ", rows.type, " from the analysis. If there are multiple comparisons or associations, ",
+  fp.txt <- c(paste0("We plot the ", rows.type, " from the analysis. If there are multiple comparisons or associations, ",
                    "we select the ", row.type, "s that are most significant across these. However, we can also plot ",
                    "the top ", row.type, "s within an individual analysis, or any ", row.type, "s you are interested in. "), "",
             paste0("The histograms of significance are at ", rmd_links(filenames = paste0(proj.nm, '_signif_hist.pdf'), path = path),
@@ -53,6 +52,6 @@ feature_plots_chunk <- function(grp.var="grp", path, proj.nm, contr.v, use_annot
                  "-1 indicates down; and 1 indicates up."))
   }
 
-  chunk <- c(fp.txt, "", "```{r fp}", fp.r, "```")
+  chunk <- c(paste("# Plot", rows.type), "", "```{r fp}", fp.r, "```", "", fp.txt)
   return(chunk)
 }

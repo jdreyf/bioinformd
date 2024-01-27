@@ -12,7 +12,7 @@
 #' @export
 
 roast_contrasts_chunk <- function(grp.var, path, gmt_abbrev=c('reactome', 'tft'),
-                                  gmt_prefix=c('c2.cp.reactome', 'c3.tft.gtrd'),
+                                  gmt_prefix=c('c2.cp.reactome', 'c3.tft.gtrd', 'c3.mir.mirdb'),
                                   use_des=FALSE, use_aw=TRUE, use_trend=FALSE, elst=FALSE){
 
   rc.r <- c(paste0("pdb.files <- c(", paste0(gmt_abbrev, "='", gmt_prefix, "'", collapse=", "), ")"),
@@ -30,10 +30,10 @@ roast_contrasts_chunk <- function(grp.var, path, gmt_abbrev=c('reactome', 'tft')
   if (use_des) rc.r[4] <- paste0(rc.r[4], ", design=des")
   if (use_aw) rc.r[4] <- paste0(rc.r[4], ", weights=aw")
   rc.r[4] <- paste0(rc.r[4], ", name = names(pdb.files)[i])")
+  rcr.r[5] <- paste0("\tdotplot_pwys(pwys.fry, cut.sig = 0.25, ntop = 50, name=paste0(names(pdb.files)[i]), '_pwys_fry'))")
   rc.r <- c(rc.r, "}")
 
-  rc.txt <- c("# Test pathways",
-              "We test differential abundance of pathways using limma roast [@wu_2010] for pathways whose analytes",
+  rc.txt <- c("We test differential abundance of pathways using limma roast [@wu_2010] for pathways whose analytes",
               "coordinately go up together or coordinately go down together. We also test if there is an",
               "enrichment of analytes that change, even if some go up and others go down -- the *Mixed* test.",
               "",
@@ -44,6 +44,6 @@ roast_contrasts_chunk <- function(grp.var, path, gmt_abbrev=c('reactome', 'tft')
               "the proportion of genes down-regulated at p<0.05, and the p-value and FDR for testing if the gene set is coordinately up/down",
               "and for the Mixed test.")
 
-  chunk <- c(rc.txt, "", "```{r rc}", rc.r, "```")
+  chunk <- c("# Test pathways", "", "```{r rc}", rc.r, "```", "", rc.txt)
   return(chunk)
 }

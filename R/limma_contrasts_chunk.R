@@ -36,12 +36,11 @@ limma_contrasts_chunk <- function(grp.var, contr.v, path, proj.nm, limma.model=N
   }
   lc.r <- c(lc.r, paste0("write.csv(mtt.df, '", proj.nm, "_", row.type, "_stats.csv')"))
 
-  lc.txt <- c("# Test differential abundance",
-              paste0("We test differential abundance of each row of the expression matrix using limma [@ritchie_2015]. ",
+  lc.txt <- c(paste0("We test differential abundance of each row of the expression matrix using limma [@ritchie_2015]. ",
                      "The resulting CSV file is at ", rmd_links(filenames = paste0(proj.nm, "_", row.type, '_stats.csv'),
                       path = path), ". It contains the average unweighted log2 expression of each row in each group, p-values, ",
                      "FDRs, log fold-changes, and fold-changes for each comparison, and ", row.type, " annotation."))
 
-  chunk <- c(lc.txt, "", "```{r lc}", lc.r, "```")
+  chunk <- c("# Test differential abundance", "", "```{r lc}", lc.r, "```", "", lc.txt)
   return(chunk)
 }
