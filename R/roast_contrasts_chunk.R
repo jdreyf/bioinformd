@@ -11,7 +11,7 @@
 #' @inheritParams bioinfo_rmd_contrasts
 #' @export
 
-roast_contrasts_chunk <- function(grp.var, path, gmt_abbrev=c('reactome', 'tft'),
+roast_contrasts_chunk <- function(grp.var, path, gmt_abbrev=c('reactome', 'tft', 'mir'),
                                   gmt_prefix=c('c2.cp.reactome', 'c3.tft.gtrd', 'c3.mir.mirdb'),
                                   use_des=FALSE, use_aw=TRUE, use_trend=FALSE, elst=FALSE){
 
@@ -30,7 +30,7 @@ roast_contrasts_chunk <- function(grp.var, path, gmt_abbrev=c('reactome', 'tft')
   if (use_des) rc.r[4] <- paste0(rc.r[4], ", design=des")
   if (use_aw) rc.r[4] <- paste0(rc.r[4], ", weights=aw")
   rc.r[4] <- paste0(rc.r[4], ", name = names(pdb.files)[i])")
-  rcr.r[5] <- paste0("\tdotplot_pwys(pwys.fry, cut.sig = 0.25, ntop = 50, name=paste0(names(pdb.files)[i]), '_pwys_fry'))")
+  rc.r[5] <- paste0("\tdotplot_pwys(pwys.fry, cut.sig = 0.25, ntop = 50, name=paste0(names(pdb.files)[i], '_pwys_fry'))")
   rc.r <- c(rc.r, "}")
 
   rc.txt <- c("We test differential abundance of pathways using limma roast [@wu_2010] for pathways whose analytes",

@@ -19,6 +19,6 @@ feat_filt_voom_chunk <- function(min.npergrp, row.type="row"){
     ". We filter out ", rows.type, " that don't have at least `r round(10**7/median(colSums(dge$counts)))` CPM in `r ceiling(0.8*min.npergrp)` samples.",
      " After filtering, there are `r length(feat.ss)` ", rows.type, ".")
 
-  chunk <- c(paste("# Filter", rows.type), "```{r feat_filt}", r_code, "```", ffilt.txt)
+  chunk <- c(paste("# Filter", rows.type), "", "```{r feat_filt}", r_code, "```", "", ffilt.txt)
   return(chunk)
 }
