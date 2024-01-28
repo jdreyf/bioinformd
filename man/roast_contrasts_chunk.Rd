@@ -8,7 +8,7 @@ roast_contrasts_chunk(
   grp.var,
   path,
   gmt_abbrev = c("reactome", "tft"),
-  gmt_prefix = c("c2.cp.reactome", "c3.tft.gtrd"),
+  gmt_prefix = c("c2.cp.reactome", "c3.tft.gtrd", "c3.mir.mirdb"),
   use_des = FALSE,
   use_aw = TRUE,
   use_trend = FALSE,
