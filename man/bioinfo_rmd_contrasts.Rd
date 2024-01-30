@@ -11,7 +11,6 @@ bioinfo_rmd_contrasts(
   input.files,
   data.logged = TRUE,
   data.nas = TRUE,
-  min.npergrp = 3,
   grp.var = "grp",
   covars = NULL,
   aw.model = paste0("~0+", grp.var),
@@ -36,8 +35,6 @@ bioinfo_rmd_contrasts(
 \item{data.logged}{Logical indicating if data has been log2-transformed.}
 
 \item{data.nas}{Logical indicating if data has NAs.}
-
-\item{min.npergrp}{Minimum sample size per group.}
 
 \item{grp.var}{Variable name in \code{pheno} for group.}
 

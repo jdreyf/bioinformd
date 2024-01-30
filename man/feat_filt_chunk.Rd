@@ -4,10 +4,10 @@
 \alias{feat_filt_chunk}
 \title{Feature filter chunk}
 \usage{
-feat_filt_chunk(min.npergrp, row.type = "row")
+feat_filt_chunk(grp.var, row.type = "row")
 }
 \arguments{
-\item{min.npergrp}{Minimum sample size per group.}
+\item{grp.var}{Variable name in \code{pheno} for group.}
 
 \item{row.type}{Character in filename for features.}
 }

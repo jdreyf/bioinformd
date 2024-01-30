@@ -8,7 +8,6 @@
 #' @param input.files Character vector of input files. Matrix, pheno, and (optionally) annot.
 #' @param data.logged Logical indicating if data has been log2-transformed.
 #' @param data.nas Logical indicating if data has NAs.
-#' @param min.npergrp Minimum sample size per group.
 #' @param grp.var Variable name in \code{pheno} for group.
 #' @param covars Variable name in \code{pheno} for covariates.
 #' @param aw.model Model for `limma::arrayWeights`.
@@ -28,7 +27,7 @@
 #' }
 
 bioinfo_rmd_contrasts <- function(filename, local.path=NULL, data.desc="Gene expression",
-                              input.files, data.logged=TRUE, data.nas=TRUE, min.npergrp=3, grp.var="grp",
+                              input.files, data.logged=TRUE, data.nas=TRUE, grp.var="grp",
                               covars=NULL, aw.model=paste0("~0+", grp.var), use_aw=TRUE, use_trend=FALSE,
                               contr.v, limma.model=NULL, row.type="gene", gmt_abbrev=c('reactome', 'tft'),
                               gmt_prefix=c('c2.cp.reactome', 'c3.tft.gtrd')){
@@ -49,7 +48,7 @@ bioinfo_rmd_contrasts <- function(filename, local.path=NULL, data.desc="Gene exp
   }
   blocks[["norm"]] <- norm_chunk(proj.nm=proj.nm, path=net.path)
   if (data.nas){
-    blocks[["feat_filt"]] <- feat_filt_chunk(min.npergrp=min.npergrp, row.type = row.type)
+    blocks[["feat_filt"]] <- feat_filt_chunk(grp.var=grp.var, row.type = row.type)
   }
 
   blocks[["wr"]] <- write_data_chunk(proj.nm = proj.nm, use_annot=use_annot, row.type=row.type)

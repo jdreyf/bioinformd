@@ -2,15 +2,15 @@
 #'
 #' Feature filter chunk.
 #'
-#' @param min.npergrp Minimum sample size per group.
 #' @param row.type Character in filename for features.
 #' @details A feature must be present at least 80% of \code{min.npergrp}.
+#' @inheritParams bioinfo_rmd_contrasts
 #' @export
 
-feat_filt_chunk <- function(min.npergrp, row.type="row"){
+feat_filt_chunk <- function(grp.var, row.type="row"){
   rows.type <- paste0(row.type, "s")
 
-  r_code <- c(paste0("min.npergrp <- ", min.npergrp),
+  r_code <- c(glue::glue("min.npergrp <- min(table(pheno${grp.var}))"),
               "feat.ss <- which(rowSums(!is.na(mtrx.na)) >= 0.8*min.npergrp)",
               "mtrx <- mtrx[feat.ss,,drop=FALSE]")
 

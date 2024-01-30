@@ -10,7 +10,6 @@ bioinfo_rmd_contrasts_voom(
   data.desc = "Gene expression",
   input.files,
   data.nas = TRUE,
-  min.npergrp = 3,
   grp.var = "grp",
   covars = NULL,
   aw.model = paste0("~0+", grp.var),
@@ -33,8 +32,6 @@ bioinfo_rmd_contrasts_voom(
 \item{input.files}{Character vector of input files. Matrix, pheno, and (optionally) annot.}
 
 \item{data.nas}{Logical indicating if data has NAs.}
-
-\item{min.npergrp}{Minimum sample size per group.}
 
 \item{grp.var}{Variable name in \code{pheno} for group.}
 
