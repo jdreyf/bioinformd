@@ -8,7 +8,7 @@
 
 setup_chunk <- function(path, link2wd = TRUE){
   wd.path <- ifelse(link2wd, paste0("J:/cores/bioinformatics/", path), ".")
-  r_code <- c('setwd("B:/")', 'source("fcns/config.r")', paste0('setwd("', path, '")'), paste0('wd <- "', wd.path, '"'))
+  r_code <- c('setwd("B:/")', 'source("fcns/config.r")', paste0('wd <- "', wd.path, '"'), "setwd(sub('J:/cores/bioinformatics', 'B:', wd, fixed = TRUE))")
   chunk <- c("```{r setup, include=FALSE}", "knitr::opts_chunk$set(echo = FALSE, include = FALSE)",
              r_code, "```")
   return(chunk)

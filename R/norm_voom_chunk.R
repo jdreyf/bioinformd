@@ -20,7 +20,7 @@ norm_voom_chunk <- function(proj.nm, voom.model, path, use_aw){
     r_code <- c(r_code, "elst <- voom(dge, voom.des, plot=TRUE)")
   }
 
-  r_code <- c(r_code, "barplot(dge$samples$norm.factors, names.arg=colnames(dge), las = 2)",
+  r_code <- c(r_code, "barplot(dge$samples$norm.factors, names.arg=colnames(dge), las = 2)", "abline(h=1, lty=3)",
               paste0("write.csv(elst$E, '", norm.filename, "')"))
 
   norm.txt <- paste0("We normalize samples using the TMM method [@robinson_2010]. This method calculates normalization factors ",

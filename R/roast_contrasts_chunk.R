@@ -23,15 +23,17 @@ roast_contrasts_chunk <- function(grp.var, path, gmt_abbrev=c('reactome', 'tft',
     rc.r <- c(rc.r,
       paste0("\tpwys.fry <- roast_contrasts(elst, G=G, feat.tab = mtt.df, pheno[,'", grp.var, "'], contrast.v=contr.v, fun='fry'"))
   } else {
-    rc.r <- c(rc.r, paste0("\tpwys.fry <- roast_contrasts(mtrx, G=G, feat.tab = mtt.df, pheno[,'", grp.var, "'], contrast.v=contr.v,",
+    rc.r <- c(rc.r, paste0("\tpwys.fry <- roast_contrasts(mtrx, G=G, feat.tab = mtt.df, grp=pheno[,'", grp.var, "'], contrast.v=contr.v,",
             "fun='fry', trend=", use_trend))
   }
 
   if (use_des) rc.r[4] <- paste0(rc.r[4], ", design=des")
   if (use_aw) rc.r[4] <- paste0(rc.r[4], ", weights=aw")
   rc.r[4] <- paste0(rc.r[4], ", name = names(pdb.files)[i])")
-  rc.r[5] <- paste0("\tdotplot_pwys(pwys.fry, cut.sig = 0.25, ntop = 50, name=paste0(names(pdb.files)[i], '_pwys_fry'))")
-  rc.r <- c(rc.r, "}")
+  rc.r <- c("\tsignif_hist(pwys.fry, name = paste0(names(pdb.files)[i], '_fry_signif_hist'))",
+    "\tdotplot_pwys(pwys.fry, cut.sig = 0.25, ntop = 50, name=paste0(names(pdb.files)[i], '_fry'))",
+    "\tbubbleplot_pwys(pwys.fry, name=paste0(names(pdb.files)[i], '_fry'))",
+    "}")
 
   rc.txt <- c("We test differential abundance of pathways using limma roast [@wu_2010] for pathways whose analytes",
               "coordinately go up together or coordinately go down together. We also test if there is an",

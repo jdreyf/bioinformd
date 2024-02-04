@@ -46,7 +46,7 @@ feature_plots_chunk <- function(grp.var="grp", path, proj.nm, contr.v, use_annot
     fp.r <- c(fp.r, paste0("sig.tab <- ezvenn(mtt, p.cutoff=0.05, name='", proj.nm, "_", row.type, "')"),
               paste0("write.csv(sig.tab, '", proj.nm, "_", row.type, "_venn_tab.csv')"))
     fp.txt <- c(fp.txt, "", paste0("The Venn diagram is at ", rmd_links(filenames = paste0(proj.nm, "_", row.type, "_venn.pdf"),
-                 path = path), ". The Venn table is at ", rmd_links(filenames=paste0(proj.nm, "_", row.type, '_venn_tab.csv'),
+                 path = path), ". The corresponding Venn table is at ", rmd_links(filenames=paste0(proj.nm, "_", row.type, '_venn_tab.csv'),
                                                                     path = path),
                  ". It has elements {-1, 0, 1}. For a ", row.type, " in a comparison, 0 indicates no significant change; ",
                  "-1 indicates down; and 1 indicates up."))
