@@ -18,7 +18,7 @@ feat_filt_voom_chunk <- function(grp.var, row.type="row"){
 
   ffilt.txt <- paste0("Before filtering, there are `r nrow(mtrx)` ", rows.type,
     ". We filter out ", rows.type, " that don't have at least `r cpm.thresh` CPM in `r ceiling(0.8*min.npergrp)` samples.",
-    "This threshold is based on the rule-of-thumb that if all samples had the same read depth, we would want to keep genes that have at least 10 counts in multiple samples.",
+    " This threshold is based on the rule-of-thumb that if all samples had the same read depth, we would want to keep genes that have at least 10 counts in multiple samples.",
      " After filtering, there are `r length(feat.ss)` ", rows.type, ".")
 
   chunk <- c(paste("# Filter", rows.type), "", "```{r feat_filt}", r_code, "```", "", ffilt.txt)
