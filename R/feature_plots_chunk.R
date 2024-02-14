@@ -17,7 +17,7 @@ feature_plots_chunk <- function(grp.var="grp", path, proj.nm, contr.v, use_annot
             "top.feats <- rownames(mtt)[1:min(200, nrow(mtt))]")
 
   if (elst){
-    fp.r <- fp.r <- c(fp.r, paste0("ezheat(elst$E[top.feats[1:50],], pheno.df=pheno[,'", grp.var, ", drop=FALSE'], name='",
+    fp.r <- fp.r <- c(fp.r, paste0("ezheat(elst$E[top.feats[1:50],], pheno.df=pheno[,'", grp.var, "', drop=FALSE], name='",
                                    proj.nm, "_top", row.type, "s_heat', reorder_rows = TRUE)"),
                       paste0("plot_by_grp(elst$E[top.feats,], grp=pheno[,'", grp.var, "'], name='", proj.nm, "_top", row.type, "s')"))
   } else {
