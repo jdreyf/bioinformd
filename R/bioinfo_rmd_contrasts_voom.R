@@ -7,8 +7,7 @@
 #' @export
 #' @examples
 #' \donttest{
-#' bioinfo_rmd_contrasts(filename="new_analysis", input.files = c("counts.csv", "pheno.csv"),
-#' contr.v='c(treat="treat-control")')
+#' bioinfo_rmd_contrasts(filename="new_analysis", input.files = c("counts.csv", "pheno.csv"), contr.v='c(treat="treat-control")')
 #' }
 
 bioinfo_rmd_contrasts_voom <- function(filename, local.path=NULL, data.desc="Gene expression",
