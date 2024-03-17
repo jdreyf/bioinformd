@@ -11,7 +11,7 @@
 #' @inheritParams bioinfo_rmd_contrasts
 #' @export
 
-roast_contrasts_chunk <- function(grp.var, path, gmt_abbrev=c('reactome', 'tft', 'mir'),
+roast_contrasts_chunk <- function(grp.var, path, gmt_abbrev=c('reactome', 'gtrd', 'mirdb'),
                                   gmt_prefix=c('c2.cp.reactome', 'c3.tft.gtrd', 'c3.mir.mirdb'),
                                   use_des=FALSE, use_aw=TRUE, use_trend=FALSE, elst=FALSE){
 
@@ -31,20 +31,23 @@ roast_contrasts_chunk <- function(grp.var, path, gmt_abbrev=c('reactome', 'tft',
   if (use_aw) rc.r[4] <- paste0(rc.r[4], ", weights=aw")
   rc.r[4] <- paste0(rc.r[4], ", name = names(pdb.files)[i])")
   rc.r <- c("\tsignif_hist(pwys.fry, name = paste0(names(pdb.files)[i], '_fry_signif_hist'))",
-    "\tdotplot_pwys(pwys.fry, cut.sig = 0.25, ntop = 50, name=paste0(names(pdb.files)[i], '_fry'))",
+    "\tdotplot_pwys(pwys.fry, cut.sig = 0.25, type.sig='FDR', ntop = 50, name=paste0(names(pdb.files)[i], '_fry'))",
     "\tbubbleplot_pwys(pwys.fry, name=paste0(names(pdb.files)[i], '_fry'))",
     "}")
 
-  rc.txt <- c("We test differential abundance of pathways using limma roast [@wu_2010] for pathways whose analytes",
-              "coordinately go up together or coordinately go down together. We also test if there is an",
-              "enrichment of analytes that change, even if some go up and others go down -- the *Mixed* test.",
+  rc.txt <- c("We test differential abundance of pathways using limma roast [@wu_2010] for pathways whose analytes coordinately go up together or coordinately go down together. We also test if there is an enrichment of analytes that change, even if some go up and others go down -- the *Mixed* test.",
               "",
               "We download pathway databases via the Broad Institute's",
               "[Molecular Signature Database](http://www.gsea-msigdb.org/gsea/msigdb/collections.jsp)[@liberzon_2011].",
               "The results are at", paste0(rmd_links(filenames = paste0(gmt_abbrev, '_fry.xlsx'), path = path), collapse=", "),
               ". The columns give the number of genes in the set, the direction of the gene set, the proportion of genes up-regulated at p<0.05",
               "the proportion of genes down-regulated at p<0.05, and the p-value and FDR for testing if the gene set is coordinately up/down",
-              "and for the Mixed test.")
+              "and for the Mixed test.",
+              "",
+              "The histograms of significance are shown in `r make_file_links(wd, ", paste0("(", paste0(gmt_abbrev, collapse = "|"), ")_signif_hist\\.pdf"), ")`.",
+              "If no pathways were associated with the phenotype, we would expect the *p*-value histogram to be flat and all FDRs to be near one. The more associated pathways there were, the more enrichment there was at low *p*-values, the lower will be the FDRs.",
+              "",
+              "A dot plot of the top pathways with FDR < 25% is at `r make_file_links(wd, '_dotplot\\.pdf')`.")
 
   chunk <- c("# Test pathways", "", "```{r rc}", rc.r, "```", "", rc.txt)
   return(chunk)
