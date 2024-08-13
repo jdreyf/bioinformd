@@ -61,7 +61,6 @@ If need to remove a sample, rerun with new \code{input.files}.
 }
 \examples{
 \donttest{
-bioinfo_rmd_contrasts(filename="new_analysis", input.files = c("counts.csv", "pheno.csv"),
-contr.v='c(treat="treat-control")')
+bioinfo_rmd_contrasts(filename="new_analysis", input.files = c("counts.csv", "pheno.csv"), contr.v='c(treat="treat-control")')
 }
 }
