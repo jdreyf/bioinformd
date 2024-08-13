@@ -17,7 +17,8 @@ roast_contrasts_chunk <- function(grp.var, path, gmt_abbrev=c('reactome', 'gtrd'
 
   rc.r <- c(paste0("pdb.files <- c(", paste0(gmt_abbrev, "='", gmt_prefix, "'", collapse=", "), ")"),
             paste0("for (i in seq_along(pdb.files)){"),
-  "\tG <- read_gmt(paste0('B:/annotations/gene_sets/', pdb.files[i], '.symbols.gmt'))")
+  "\tG <- read_gmt(paste0('B:/annotations/gene_sets/', pdb.files[i], '.symbols.gmt'))",
+  "\tG <- map_glist(G, annot=annot)")
 
   if (elst){
     rc.r <- c(rc.r,
