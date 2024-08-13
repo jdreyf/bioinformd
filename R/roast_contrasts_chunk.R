@@ -39,23 +39,28 @@ roast_contrasts_chunk <- function(grp.var, path, gmt_abbrev=c('reactome', 'gtrd'
     "\tbubbleplot_pwys(pwys.fry, name=paste0(names(pdb.files)[i], '_fry'))",
     "}")
 
-  rc.txt <- c(glue("We test differential abundance of pathways using limma roast [@wu_2010] for pathways whose analytes coordinately go up together or \\
+  rc.txt <- glue("We test differential abundance of pathways using limma roast [@wu_2010] for pathways whose analytes coordinately go up together or \\
                    coordinately go down together. We also test if there is an enrichment of analytes that change, even if some go up and others go down -- the *Mixed* test. \\
                    The benefit of the Mixed test is that it will detect a pathway where half of the genes are significantly upregulated and the other half are equally \\
                    significantly downregulated, whereas the non-mixed test would conclude this pathway is not significant, because the upregulated genes would cancel out the \\
-                   downregulated genes."),
-              "",
-              "We download pathway databases via the Broad Institute's",
-              "[Molecular Signature Database](http://www.gsea-msigdb.org/gsea/msigdb/collections.jsp)[@liberzon_2011].",
-              "The results are at", paste0(rmd_links(filenames = paste0(gmt_abbrev, '_fry.xlsx'), path = path), collapse=", "),
-              ". The columns give the number of genes in the set, the direction of the gene set, the proportion of genes up-regulated at p<0.05",
-              "the proportion of genes down-regulated at p<0.05, and the p-value and FDR for testing if the gene set is coordinately up/down",
-              "and for the Mixed test.",
-              "",
-              "The histograms of significance are shown in `r make_file_links(wd, ", paste0("(", paste0(gmt_abbrev, collapse = "|"), ")_signif_hist.pdf"), ")`.",
-              "If no pathways were associated with the phenotype, we would expect the *p*-value histogram to be flat and all FDRs to be near one. The more associated pathways there were, the more enrichment there was at low *p*-values, the lower will be the FDRs.",
-              "",
-              "A dot plot of the top pathways with FDR < 25% is at `r make_file_links(wd, '_dotplot.pdf')`.")
+                   downregulated genes.
+
+                  We download pathway databases via the Broad Institute's \\
+                  [Molecular Signature Database](http://www.gsea-msigdb.org/gsea/msigdb/collections.jsp)[@liberzon_2011]. \\
+                  We test pathways derived from [Reactome](https://reactome.org/PathwayBrowser/), microRNA target predictions from [mirdb](https://mirdb.org/), \\
+                  and transcription factor targets from the [Gene Transcription Regulation DB](https://gtrd.biouml.org/#!).
+
+                  The results are at `r make_file_links(wd, '_fry.xlsx', recursive=TRUE)`. \\
+                  The first column gives hyperlinked pathway names. If you click on these links, they should take you to the statistics of the genes in the pathway. \\
+                  If the first column does not have these names, it could be because the Excel file lives in a zipped folder and the solution is to unzip the folder. \\
+                  The next columns give the number of genes in the set, the direction of the gene set, the proportion of genes up-regulated at p<0.05 \\
+                  the proportion of genes down-regulated at p<0.05, and the p-value and FDR for testing if the gene set is coordinately up/down and for the Mixed test.
+
+                  The histograms of significance are shown in `r make_file_links(wd, 'fry_signif_hist\\.pdf')`. \\
+                  If no pathways were associated with the phenotype, we would expect the *p*-value histogram to be flat and all FDRs to be near one. \\
+                  The more associated pathways there were, the more enrichment there was at low *p*-values, the lower will be the FDRs.
+
+                  A dot plot of the top pathways with FDR < 25% is at `r make_file_links(wd, '_dotplot.pdf')`.")
 
   chunk <- c("# Test pathways", "", "```{r rc}", rc.r, "```", "", rc.txt)
   return(chunk)
