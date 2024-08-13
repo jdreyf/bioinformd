@@ -27,10 +27,13 @@ roast_contrasts_chunk <- function(grp.var, path, gmt_abbrev=c('reactome', 'gtrd'
             "fun='fry', trend=", use_trend))
   }
 
-  if (use_des) rc.r[4] <- paste0(rc.r[4], ", design=des")
-  if (use_aw) rc.r[4] <- paste0(rc.r[4], ", weights=aw")
-  rc.r[4] <- paste0(rc.r[4], ", name = names(pdb.files)[i])")
-  rc.r <- c("\tsignif_hist(pwys.fry, name = paste0(names(pdb.files)[i], '_fry_signif_hist'))",
+  fry.ind <- grep(pattern = "roast_contrasts", x=rc.r)
+  stopifnot(length(fry.ind) == 1)
+  if (use_des) rc.r[fry.ind] <- paste0(rc.r[fry.ind], ", design=des")
+  if (use_aw) rc.r[fry.ind] <- paste0(rc.r[fry.ind], ", weights=aw")
+  rc.r[fry.ind] <- paste0(rc.r[fry.ind], ", name = names(pdb.files)[i])")
+  rc.r <- c(rc.r,
+    "\tsignif_hist(pwys.fry, name = paste0(names(pdb.files)[i], '_fry_signif_hist'))",
     "\tdotplot_pwys(pwys.fry, cut.sig = 0.25, type.sig='FDR', ntop = 50, name=paste0(names(pdb.files)[i], '_fry'))",
     "\tbubbleplot_pwys(pwys.fry, name=paste0(names(pdb.files)[i], '_fry'))",
     "}")
@@ -44,10 +47,10 @@ roast_contrasts_chunk <- function(grp.var, path, gmt_abbrev=c('reactome', 'gtrd'
               "the proportion of genes down-regulated at p<0.05, and the p-value and FDR for testing if the gene set is coordinately up/down",
               "and for the Mixed test.",
               "",
-              "The histograms of significance are shown in `r make_file_links(wd, ", paste0("(", paste0(gmt_abbrev, collapse = "|"), ")_signif_hist\\.pdf"), ")`.",
+              "The histograms of significance are shown in `r make_file_links(wd, ", paste0("(", paste0(gmt_abbrev, collapse = "|"), ")_signif_hist.pdf"), ")`.",
               "If no pathways were associated with the phenotype, we would expect the *p*-value histogram to be flat and all FDRs to be near one. The more associated pathways there were, the more enrichment there was at low *p*-values, the lower will be the FDRs.",
               "",
-              "A dot plot of the top pathways with FDR < 25% is at `r make_file_links(wd, '_dotplot\\.pdf')`.")
+              "A dot plot of the top pathways with FDR < 25% is at `r make_file_links(wd, '_dotplot.pdf')`.")
 
   chunk <- c("# Test pathways", "", "```{r rc}", rc.r, "```", "", rc.txt)
   return(chunk)
