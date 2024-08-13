@@ -39,7 +39,11 @@ roast_contrasts_chunk <- function(grp.var, path, gmt_abbrev=c('reactome', 'gtrd'
     "\tbubbleplot_pwys(pwys.fry, name=paste0(names(pdb.files)[i], '_fry'))",
     "}")
 
-  rc.txt <- c("We test differential abundance of pathways using limma roast [@wu_2010] for pathways whose analytes coordinately go up together or coordinately go down together. We also test if there is an enrichment of analytes that change, even if some go up and others go down -- the *Mixed* test.",
+  rc.txt <- c(glue("We test differential abundance of pathways using limma roast [@wu_2010] for pathways whose analytes coordinately go up together or \\
+                   coordinately go down together. We also test if there is an enrichment of analytes that change, even if some go up and others go down -- the *Mixed* test. \\
+                   The benefit of the Mixed test is that it will detect a pathway where half of the genes are significantly upregulated and the other half are equally \\
+                   significantly downregulated, whereas the non-mixed test would conclude this pathway is not significant, because the upregulated genes would cancel out the \\
+                   downregulated genes."),
               "",
               "We download pathway databases via the Broad Institute's",
               "[Molecular Signature Database](http://www.gsea-msigdb.org/gsea/msigdb/collections.jsp)[@liberzon_2011].",
