@@ -60,7 +60,13 @@ roast_contrasts_chunk <- function(grp.var, path, gmt_abbrev=c('reactome', 'gtrd'
                   If no pathways were associated with the phenotype, we would expect the *p*-value histogram to be flat and all FDRs to be near one. \\
                   The more associated pathways there were, the more enrichment there was at low *p*-values, the lower will be the FDRs.
 
-                  A dot plot of the top pathways with FDR < 25% is at `r make_file_links(wd, '_dotplot.pdf')`.")
+                  A dot plot of the top pathways with FDR < 25% is at `r make_file_links(wd, '_dotplot.pdf')`.
+
+                  We made bubble plots per comparison and direction where the x-axis is proportion of genes with p-value < 5%, the y-axis shows the top pathways whose p-value < 5%, \\
+                  the dot color shows the pathway significance, and the dot size shows the number of genes in the pathway with p-value < 5% (although it's possible a \\
+                  significant pathway doesn't contain any significant genes, since it's sufficient if all genes in a pathway change coordinately). The bubble plots are \\
+                  at `r make_file_links(pwd, 'fry_bubbleplots\\.pdf')`.
+                 ")
 
   chunk <- c("# Test pathways", "", "```{r rc}", rc.r, "```", "", rc.txt)
   return(chunk)

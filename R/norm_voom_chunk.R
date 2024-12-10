@@ -21,7 +21,8 @@ norm_voom_chunk <- function(proj.nm, voom.model, path, use_aw){
   }
 
   r_code <- c(r_code, "barplot(dge$samples$norm.factors, names.arg=colnames(dge), las = 2, main='Normalization factors')", "abline(h=1, lty=3)",
-              paste0("write.csv(elst$E, '", norm.filename, "')"))
+              paste0("write.csv(elst$E, '", norm.filename, "')"),
+              glue("saveRDS(elst, 'elst.RDS')"))
 
   norm.txt <- paste0("We normalize samples using the TMM method [@robinson_2010]. This method calculates normalization factors ",
                      "that represent scaling terms for the effective library sizes. The normalization factors range from ",
